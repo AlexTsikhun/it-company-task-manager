@@ -6,7 +6,7 @@
   <p><strong>Position:</strong> {{ worker.position }}</p>
   <p><strong>Is staff:</strong> {{ worker.is_staff }}</p>
   <p><strong>Date joined:</strong> {{ worker.date_joined }}</p>
-  
+
   <a href="{% url 'task_manager:worker-update' pk=worker.pk %}" class="btn btn-warning">Update</a>
   <a href="{% url 'task_manager:worker-delete' pk=worker.pk %}" class="btn btn-danger">Delete</a>
   <a href="{% url 'task_manager:worker-list' %}" class="btn btn-secondary">Back</a>
