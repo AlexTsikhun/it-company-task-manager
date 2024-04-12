@@ -1,0 +1,19 @@
+{% extends "base.html" %}
+{% block content %}
+  <h1>Task type list
+    <a href="{% url 'task_manager:task_type-create' %}" class="btn btn-primary link-to-page">Create</a>
+  </h1>
+  {% if tasktype_list %}
+    <ul>
+    {% for tasktype in tasktype_list %}
+      <li>
+        <b>{{ tasktype.pk }}.</b> {{ tasktype }} 
+        <a href="{% url 'task_manager:task_type-update' pk=tasktype.pk %}" class="btn btn-warning">Update</a>
+        <a href="{% url 'task_manager:task_type-delete' pk=tasktype.pk %}" class="btn btn-danger">Delete</a>
+      </li>
+    {% endfor %}
+    {% else %}
+      <p>There are no tasks in the team.</p>
+  {% endif %}
+  </ul>
+{% endblock %}

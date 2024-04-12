@@ -1,0 +1,13 @@
+{% extends "base.html" %}
+{% block content %}
+  <h1>Task list
+    <a href="{% url 'task_manager:task-create' %}" class="btn btn-primary link-to-page">Create</a>
+  </h1>
+  {% if task_list %}
+    {% for task in task_list %}
+      <p>{{ task }}</p>
+    {% endfor %}
+    {% else %}
+      <p>There are no tasks in the team.</p>
+  {% endif %}
+{% endblock %}

@@ -2,7 +2,7 @@ from django.shortcuts import render
 from django.urls import reverse_lazy
 from django.views import generic
 
-from task_manager.models import Worker
+from task_manager.models import Worker, Task, TaskType
 
 
 def index(request):
@@ -17,7 +17,7 @@ class WorkerListView(generic.ListView):
 class WorkerCreateView(generic.CreateView):
     model = Worker
     fields = ("position", "username", "password", "first_name", "last_name")
-    success_url = reverse_lazy("worker-list")
+    success_url = reverse_lazy("task_manager:worker-list")
 
 
 class WorkerDetailView(generic.DetailView):
@@ -34,5 +34,59 @@ class WorkerUpdateView(generic.UpdateView):
 class WorkerDeleteView(generic.DeleteView):
     model = Worker
     success_url = reverse_lazy("task_manager:worker-list")
+
+
+class TaskListView(generic.ListView):
+    model = Task
+
+
+class TaskCreateView(generic.CreateView):
+    model = Task
+    fields = "__all__"
+    success_url = reverse_lazy("task_manager:task-list")
+
+
+class TaskDetailView(generic.DetailView):
+    model = Task
+    queryset = Task.objects.all()
+
+
+class TaskUpdateView(generic.UpdateView):
+    model = Task
+    fields = "__all__"
+    success_url = reverse_lazy("task_manager:task-list")
+
+
+class TaskDeleteView(generic.DeleteView):
+    model = Task
+    success_url = reverse_lazy("task_manager:task-list")
+
+
+class TaskTypeListView(generic.ListView):
+    model = TaskType
+
+
+class TaskTypeCreateView(generic.CreateView):
+    model = TaskType
+    fields = "__all__"
+    success_url = reverse_lazy("task_manager:task_type-list")
+
+
+class TaskTypeDetailView(generic.DetailView):
+    model = TaskType
+    queryset = TaskType.objects.all()
+
+
+class TaskTypeUpdateView(generic.UpdateView):
+    model = TaskType
+    fields = "__all__"
+    success_url = reverse_lazy("task_manager:task_type-list")
+
+
+class TaskTypeDeleteView(generic.DeleteView):
+    model = TaskType
+    success_url = reverse_lazy("task_manager:task_type-list")
+
+
 
 
