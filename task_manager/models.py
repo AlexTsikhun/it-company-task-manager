@@ -10,7 +10,7 @@ class Task(models.Model):
         "low": "Low",
     }
     name = models.CharField(max_length=255)
-    description = models.TextField(blank=True, null=True)
+    description = models.TextField()
     deadline = models.DateTimeField(auto_now_add=True)
     is_completed = models.BooleanField()
     priority = models.CharField(
@@ -25,8 +25,11 @@ class TaskType(models.Model):
 
 
 class Worker(AbstractUser):
-    position = models.ForeignKey("Position", on_delete=models.CASCADE)
+    position = models.ForeignKey("Position", on_delete=models.CASCADE, db_constraint=False, default=1)
 
 
 class Position(models.Model):
     name = models.CharField(max_length=255)
+
+    def __str__(self):
+        return self.name
