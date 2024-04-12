@@ -2,7 +2,7 @@ from django.shortcuts import render
 from django.urls import reverse_lazy
 from django.views import generic
 
-from task_manager.models import Worker, Task, TaskType
+from task_manager.models import Worker, Task, TaskType, Position
 
 
 def index(request):
@@ -86,3 +86,29 @@ class TaskTypeUpdateView(generic.UpdateView):
 class TaskTypeDeleteView(generic.DeleteView):
     model = TaskType
     success_url = reverse_lazy("task_manager:task_type-list")
+
+
+class PositionListView(generic.ListView):
+    model = Position
+
+
+class PositionCreateView(generic.CreateView):
+    model = Position
+    fields = "__all__"
+    success_url = reverse_lazy("task_manager:position-list")
+
+
+class PositionDetailView(generic.DetailView):
+    model = Position
+    queryset = Position.objects.all()
+
+
+class PositionUpdateView(generic.UpdateView):
+    model = Position
+    fields = "__all__"
+    success_url = reverse_lazy("task_manager:position-list")
+
+
+class PositionDeleteView(generic.DeleteView):
+    model = Position
+    success_url = reverse_lazy("task_manager:position-list")

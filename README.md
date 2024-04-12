@@ -14,3 +14,5 @@ and mark the tasks as done (of course, better before the deadlines).
 - Add Tags (like landing-page-layout or python-refactoring) for tasks with Many-to-Many relationship.
 - Add support for Projects and Teams, different teams can work on different projects, and also inside projects there are a lot of tasks to do (complicated).
 
+
+add which worker should do this task/ or has this position
