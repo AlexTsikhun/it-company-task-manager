@@ -1,7 +1,10 @@
+from django.contrib.auth import logout
+from django.contrib.auth.mixins import LoginRequiredMixin
 from django.shortcuts import render
 from django.urls import reverse_lazy
 from django.views import generic
 
+from task_manager.forms import WorkerCreationForm
 from task_manager.models import Worker, Task, TaskType, Position
 
 
@@ -14,9 +17,9 @@ class WorkerListView(generic.ListView):
     model = Worker
 
 
-class WorkerCreateView(generic.CreateView):
+class WorkerCreateView(LoginRequiredMixin, generic.CreateView):
     model = Worker
-    fields = ("position", "username", "password", "first_name", "last_name")
+    form_class = WorkerCreationForm
     success_url = reverse_lazy("task_manager:worker-list")
 
 
@@ -112,3 +115,8 @@ class PositionUpdateView(generic.UpdateView):
 class PositionDeleteView(generic.DeleteView):
     model = Position
     success_url = reverse_lazy("task_manager:position-list")
+
+
+def user_logout(request):
+    logout(request)
+    return render(request, 'registration/logged_out.html', {})
