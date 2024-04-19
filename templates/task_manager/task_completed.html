@@ -1,17 +1,16 @@
-runserver{% extends "base.html" %}
+{% extends "base.html" %}
 {% block content %}
-  <h1>Task list
-    <a href="{% url 'task_manager:task-create' %}" class="btn btn-primary link-to-page">Create</a>
-  </h1>
   <h2>List of all tasks:</h2>
   <a href="{% url 'task_manager:task-list' %}">All</a>
   <a href="{% url 'task_manager:task-completed' %}">Completed</a>
   <a href="{% url 'task_manager:task-not-completed' %}">Not</a>
-  {% if task_list %}
-    {% for task in task_list %}
-      <p>{{ task }}</p>
+  <ul>
+  {% if completed_tasks %}
+    {% for completed_task in completed_tasks %}
+      <li class="list-group-item">{{ completed_task }}</li>
     {% endfor %}
     {% else %}
-      <p>There are no tasks in the team.</p>
+      <h3>There is no completed tasks! </h3>
   {% endif %}
+  </ul>
 {% endblock %}

@@ -15,4 +15,10 @@ and mark the tasks as done (of course, better before the deadlines).
 - Add support for Projects and Teams, different teams can work on different projects, and also inside projects there are a lot of tasks to do (complicated).
 
 
-add which worker should do this task/ or has this position
+toDo
+- add which worker should do this task/ or has this position
+- in all tasks page show completed and not yes tasks
+- all where complete = true
+
+future work - add alternative solution (client side with JS) for completed/uncompleted tasks
+when in `all`, btn should be unactive

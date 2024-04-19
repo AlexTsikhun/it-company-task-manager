@@ -1,0 +1,16 @@
+{% extends "base.html" %}
+{% block content %}
+  <h2>List of not completed tasks:</h2>
+  <a href="{% url 'task_manager:task-list' %}">All</a>
+  <a href="{% url 'task_manager:task-completed' %}">Completed</a>
+  <a href="{% url 'task_manager:task-not-completed' %}">Not</a>
+  <ul>
+  {% if not_completed_tasks %}
+    {% for not_completed_task in not_completed_tasks %}
+      <li class="list-group-item">{{ not_completed_task }}</li>
+    {% endfor %}
+    {% else %}
+      <h4>There is no not completed tasks! </h4>
+  {% endif %}
+  </ul>
+{% endblock %}

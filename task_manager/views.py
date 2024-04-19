@@ -120,3 +120,19 @@ class PositionDeleteView(generic.DeleteView):
 def user_logout(request):
     logout(request)
     return render(request, 'registration/logged_out.html', {})
+
+
+def task_completed(request):
+    completed_tasks = Task.objects.filter(is_completed=True)
+    context = {
+        "completed_tasks": completed_tasks,
+    }
+    return render(request, "task_manager/task_completed.html", context)
+
+
+def task_not_completed(request):
+    not_completed_tasks = Task.objects.filter(is_completed=False)
+    context = {
+        "not_completed_tasks": not_completed_tasks,
+    }
+    return render(request, "task_manager/task_not_completed.html", context)

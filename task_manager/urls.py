@@ -22,6 +22,8 @@ from task_manager.views import (
     PositionDetailView,
     PositionUpdateView,
     PositionDeleteView,
+    task_completed,
+    task_not_completed,
 )
 
 urlpatterns = [
@@ -56,6 +58,12 @@ urlpatterns = [
         "tasks/<int:pk>/delete/",
         TaskDeleteView.as_view(),
         name="task-delete"
+    ),
+    path("tasks/completed/", task_completed, name="task-completed"),
+    path(
+        "tasks/not-completed/",
+        task_not_completed,
+        name="task-not-completed"
     ),
 
     path("task_types/", TaskTypeListView.as_view(), name="task_type-list"),

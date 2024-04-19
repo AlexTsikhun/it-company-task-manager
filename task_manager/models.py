@@ -19,6 +19,9 @@ class Task(models.Model):
     task_type = models.ForeignKey("TaskType", on_delete=models.CASCADE)
     assignees = models.ManyToManyField("Worker", related_name="tasks")
 
+    def __str__(self):
+        return self.name
+
 
 class TaskType(models.Model):
     name = models.CharField(max_length=255)
