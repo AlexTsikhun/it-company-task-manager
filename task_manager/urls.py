@@ -23,7 +23,7 @@ from task_manager.views import (
     PositionUpdateView,
     PositionDeleteView,
     task_completed,
-    task_not_completed,
+    task_not_completed, complete_task,
 )
 
 urlpatterns = [
@@ -46,6 +46,11 @@ urlpatterns = [
         name="worker-delete"
     ),
 
+
+
+
+
+
     path("tasks/", TaskListView.as_view(), name="task-list"),
     path("tasks/create/", TaskCreateView.as_view(), name="task-create"),
     path("tasks/<int:pk>/", TaskDetailView.as_view(), name="task-detail"),
@@ -65,6 +70,13 @@ urlpatterns = [
         task_not_completed,
         name="task-not-completed"
     ),
+    path("task/<int:pk>/complete/", complete_task, name="task-complete"),
+
+
+
+
+
+
 
     path("task_types/", TaskTypeListView.as_view(), name="task_type-list"),
     path(

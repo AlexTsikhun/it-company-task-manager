@@ -1,7 +1,8 @@
 from django.contrib.auth import logout
 from django.contrib.auth.mixins import LoginRequiredMixin
+from django.http import HttpResponseRedirect
 from django.shortcuts import render
-from django.urls import reverse_lazy
+from django.urls import reverse_lazy, reverse
 from django.views import generic
 
 from task_manager.forms import WorkerCreationForm
@@ -136,3 +137,15 @@ def task_not_completed(request):
         "not_completed_tasks": not_completed_tasks,
     }
     return render(request, "task_manager/task_not_completed.html", context)
+
+
+def complete_task(request, pk):
+    task_complete = Task.objects.get(pk=pk)
+    if not Task.objects.get(pk=pk).is_completed:
+        # Task.objects.filter(pk=pk).update(is_completed=True)
+        task_complete.is_completed = True
+    task_complete.save()
+    context = {
+        "task_list": task_complete,
+    }
+    return HttpResponseRedirect(reverse("task_manager:task-list"))
