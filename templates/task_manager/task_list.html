@@ -4,9 +4,7 @@ runserver{% extends "base.html" %}
     <a href="{% url 'task_manager:task-create' %}" class="btn btn-primary link-to-page">Create</a>
   </h1>
   <h2>List of all tasks:</h2>
-  <a href="{% url 'task_manager:task-list' %}">All</a>
-  <a href="{% url 'task_manager:task-completed' %}">Completed</a>
-  <a href="{% url 'task_manager:task-not-completed' %}">Not</a>
+  {% include "includes/task_state_buttons.html" %}
   {% if task_list %}
     {% for task in task_list %}
       <p>{{ task }}</p>
