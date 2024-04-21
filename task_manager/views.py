@@ -149,4 +149,4 @@ def complete_task(request, pk):
         task_complete.is_completed = False
     task_complete.save()
 
-    return HttpResponseRedirect(reverse("task_manager:task-list"))
+    return HttpResponseRedirect(reverse("task_manager:task-not-completed"))
