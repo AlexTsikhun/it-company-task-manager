@@ -3,9 +3,9 @@ I have a team of Developers, Designers, Project Managers, and QA specialists.
 Also, I have a lot of tasks connected with the IT-sphere. 
 But somehow, I still haven't heard anything about Trello or ClickUp. 
 So, I decided to implement my own Task Manager, which will handle all 
-possible problems during product development in my team. 
-Everyone from the team can create tasks, assign these tasks to team members,
-and mark the tasks as done (of course, better before the deadlines).
+    possible problems during product development in my team. 
+    Everyone from the team can create tasks, assign these tasks to team members,
+    and mark the tasks as done (of course, better before the deadlines).
 
 
 ### Ideas to add:
@@ -17,8 +17,7 @@ and mark the tasks as done (of course, better before the deadlines).
 
 toDo
 - add which worker should do this task/ or has this position
-- in all tasks page show completed and not yes tasks
-- all where complete = true
-
+- my task
 future work - add alternative solution (client side with JS) for completed/uncompleted tasks
 when in `all`, btn should be unactive
+add checkbox for tasks in the main task-list page (and save with js??)
