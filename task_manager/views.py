@@ -144,8 +144,8 @@ def complete_task(request, pk):
     if not Task.objects.get(pk=pk).is_completed:
         # Task.objects.filter(pk=pk).update(is_completed=True)
         task_complete.is_completed = True
+    else:
+        task_complete.is_completed = False
     task_complete.save()
-    context = {
-        "task_list": task_complete,
-    }
+
     return HttpResponseRedirect(reverse("task_manager:task-list"))
