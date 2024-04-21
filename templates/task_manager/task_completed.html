@@ -3,13 +3,15 @@
   <h1>List of completed tasks:</h1>
   {% include "includes/task_state_buttons.html" %}
   {% if completed_tasks %}
+    <ul class="list-group list-group-flush list-group-item-action">
     {% for completed_task in completed_tasks %}
-      <p>
-        <a href="{% url 'task_manager:task-detail' pk=completed_task.pk %}">{{ completed_task.pk }}</a>
+      <li class="list-group-item list-group-item-action">
+        <a href="{% url 'task_manager:task-detail' pk=completed_task.pk %}">{{ completed_task.pk }}.</a>
         {{ completed_task }}
-      </p>
+      </li>
     {% endfor %}
     {% else %}
       <h3>There is no completed tasks! </h3>
+    </ul>
   {% endif %}
 {% endblock %}

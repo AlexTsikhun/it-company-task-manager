@@ -5,13 +5,15 @@
   </h1>
   {% include "includes/task_state_buttons.html" %}
   {% if task_list %}
+    <ul class="list-group list-group-flush list-group-item-action">
     {% for task in task_list %}
-      <p>
-        <a href="{% url 'task_manager:task-detail' pk=task.pk %}">{{ task.pk }}</a>
+      <li class="list-group-item list-group-item-action">
+        <a href="{% url 'task_manager:task-detail' pk=task.pk %}">{{ task.pk }}.</a>
         {{ task }}
-      </p>
+      </li>
     {% endfor %}
     {% else %}
       <p>There are no tasks in the team.</p>
+    </ul>
   {% endif %}
 {% endblock %}
