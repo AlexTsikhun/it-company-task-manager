@@ -1,9 +1,7 @@
 {% extends "base.html" %}
 {% block content %}
   <h2>List of all tasks:</h2>
-  <a href="{% url 'task_manager:task-list' %}">All</a>
-  <a href="{% url 'task_manager:task-completed' %}">Completed</a>
-  <a href="{% url 'task_manager:task-not-completed' %}">Not</a>
+  {% include "includes/task_state_buttons.html" %}
   <ul>
   {% if completed_tasks %}
     {% for completed_task in completed_tasks %}
