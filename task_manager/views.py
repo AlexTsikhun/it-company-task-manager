@@ -46,7 +46,8 @@ class TaskListView(generic.ListView):
 
 class TaskCreateView(generic.CreateView):
     model = Task
-    fields = "__all__"
+    # fields = "__all__"
+    form_class = TaskForm
     success_url = reverse_lazy("task_manager:task-list")
 
 

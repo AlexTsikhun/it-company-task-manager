@@ -18,6 +18,10 @@ class TaskForm(forms.ModelForm):
         widget=forms.CheckboxSelectMultiple,
     )
 
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+        self.fields['is_completed'].widget.attrs['disabled'] = True
+
     class Meta:
         model = Task
         fields = "__all__"
