@@ -18,6 +18,8 @@ So, I decided to implement my own Task Manager, which will handle all
 toDo
 - add which worker should do this task/ or has this position
 - my task
+
 future work - add alternative solution (client side with JS) for completed/uncompleted tasks
 when in `all`, btn should be unactive
 add checkbox for tasks in the main task-list page (and save with js??)
+is_complete shouldn't be clickable when create task

@@ -5,7 +5,7 @@ from django.shortcuts import render
 from django.urls import reverse_lazy, reverse
 from django.views import generic
 
-from task_manager.forms import WorkerCreationForm
+from task_manager.forms import WorkerCreationForm, TaskForm
 from task_manager.models import Worker, Task, TaskType, Position
 
 
@@ -57,7 +57,8 @@ class TaskDetailView(generic.DetailView):
 
 class TaskUpdateView(generic.UpdateView):
     model = Task
-    fields = "__all__"
+    # fields = "__all__"
+    form_class = TaskForm
     success_url = reverse_lazy("task_manager:task-list")
 
 
