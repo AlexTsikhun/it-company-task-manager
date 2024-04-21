@@ -142,7 +142,6 @@ def task_not_completed(request):
 def complete_task(request, pk):
     task_complete = Task.objects.get(pk=pk)
     if not Task.objects.get(pk=pk).is_completed:
-        # Task.objects.filter(pk=pk).update(is_completed=True)
         task_complete.is_completed = True
     else:
         task_complete.is_completed = False

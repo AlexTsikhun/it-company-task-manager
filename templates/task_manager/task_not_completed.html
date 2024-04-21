@@ -1,14 +1,15 @@
 {% extends "base.html" %}
 {% block content %}
-  <h2>List of not completed tasks:</h2>
+  <h1>List of not completed tasks:</h1>
   {% include "includes/task_state_buttons.html" %}
-  <ul>
   {% if not_completed_tasks %}
     {% for not_completed_task in not_completed_tasks %}
-      <li class="list-group-item">{{ not_completed_task }}</li>
+      <p>
+        <a href="{% url 'task_manager:task-detail' pk=not_completed_task.pk %}">{{ not_completed_task.pk }}</a>
+          {{ not_completed_task }}
+      </p>
     {% endfor %}
     {% else %}
       <h4>There is no not completed tasks! </h4>
   {% endif %}
-  </ul>
 {% endblock %}
