@@ -4,12 +4,12 @@
     <a href="{% url 'task_manager:task_type-create' %}" class="btn btn-primary link-to-page">Create</a>
   </h1>
   {% if tasktype_list %}
-    <ul>
+    <ul class="list-group list-group-flush list-group-item-action">
     {% for tasktype in tasktype_list %}
-      <li>
-        <b>{{ tasktype.pk }}.</b> {{ tasktype }} 
-        <a href="{% url 'task_manager:task_type-update' pk=tasktype.pk %}" class="btn btn-warning">Update</a>
-        <a href="{% url 'task_manager:task_type-delete' pk=tasktype.pk %}" class="btn btn-danger">Delete</a>
+      <li class="list-group-item list-group-item-action">
+        <b>{{ tasktype.pk }}.</b> {{ tasktype }}
+        <a href="{% url 'task_manager:task_type-update' pk=tasktype.pk %}" class="btn btn-warning link-to-page">Update</a>
+        <a href="{% url 'task_manager:task_type-delete' pk=tasktype.pk %}" class="btn btn-danger link-to-page">Delete</a>
       </li>
     {% endfor %}
     {% else %}
