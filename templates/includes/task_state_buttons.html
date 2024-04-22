@@ -1,3 +1,13 @@
-<a href="{% url 'task_manager:task-not-completed' %}">Uncompleted</a>
-<a href="{% url 'task_manager:task-completed' %}">Completed</a>
-<a href="{% url 'task_manager:task-list' %}">All</a>
+<div class="d-sm-flex align-items-center justify-content-between border-bottom">
+  <ul class="nav nav-tabs" role="tablist">
+    <li class="nav-item">
+      <a class="nav-link active ps-0" id="home-tab" data-bs-toggle="tab" href="{% url 'task_manager:task-not-completed' %}" role="tab" aria-controls="overview" aria-selected="true">Uncompleted</a>
+    </li>
+    <li class="nav-item">
+      <a class="nav-link" id="profile-tab" data-bs-toggle="tab" href="{% url 'task_manager:task-completed' %}" role="tab" aria-selected="false">Completed</a>
+    </li>
+    <li class="nav-item">
+      <a class="nav-link" id="contact-tab" data-bs-toggle="tab" href="{% url 'task_manager:task-list' %}" role="tab" aria-selected="false">All</a>
+    </li>
+  </ul>
+</div>

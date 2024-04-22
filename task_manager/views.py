@@ -11,7 +11,7 @@ from task_manager.models import Worker, Task, TaskType, Position
 
 def index(request):
     res = Worker.objects.count()
-    return render(request, template_name="base.html", context={"ind": res})
+    return render(request, template_name="task_manager/index.html", context={"ind": res})
 
 
 class WorkerListView(generic.ListView):

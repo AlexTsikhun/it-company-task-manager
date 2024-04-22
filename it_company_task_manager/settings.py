@@ -31,6 +31,7 @@ ALLOWED_HOSTS = []
 # Application definition
 
 INSTALLED_APPS = [
+    'admin_star.apps.AdminStarConfig',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -131,6 +132,8 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 AUTH_USER_MODEL = "task_manager.Worker"
 
 LOGIN_REDIRECT_URL = "/"
+
+EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
 
 LOGOUT_REDIRECT_URL = "/"
 
