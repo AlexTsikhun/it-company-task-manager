@@ -23,3 +23,5 @@ future work - add alternative solution (client side with JS) for completed/uncom
 when in `all`, btn should be unactive
 add checkbox for tasks in the main task-list page (and save with js??)
 theme
+show selected tab in tasks
+placeholder to fields in forms

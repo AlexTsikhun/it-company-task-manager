@@ -1,6 +1,6 @@
 {% extends "base.html" %}
 {% block content %}
-  <h4>List of all tasks:
+  <h4 class="card-title">List of all tasks:
     <a href="{% url 'task_manager:task-create' %}" class="btn btn-primary link-to-page">Create</a>
   </h4>
   {% include "includes/task_state_buttons.html" %}

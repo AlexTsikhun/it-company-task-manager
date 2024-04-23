@@ -31,7 +31,7 @@ class WorkerDetailView(generic.DetailView):
 
 class WorkerUpdateView(generic.UpdateView):
     model = Worker
-    fields = "__all__"
+    fields = ("first_name", "last_name", "email", "date_joined", "position")
     success_url = reverse_lazy("task_manager:worker-list")
 
 

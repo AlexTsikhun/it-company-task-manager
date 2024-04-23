@@ -1,45 +1,33 @@
 {% extends "base.html" %}
 {% block content %}
-  <div class="main-panel">
-    <div class="content-wrapper">
-      <div class="row">
-        <div class="col-lg-12 stretch-card">
-          <div class="card">
-            <div class="card-body">
-              <h4 class="card-title">Worker table <a href="{% url 'task_manager:worker-create' %}" class="btn btn-primary link-to-page">Create</a></h4>
-              <p class="card-description">
-                List of all workers
-              </p>
-              <div class="table-responsive">
-                {% if worker_list %}
-                  <table class="table table-hover">
-                    <thead>
-                      <tr>
-                        <th scope="col">#</th>
-                        <th scope="col">First name</th>
-                        <th scope="col">Last name</th>
-                        <th scope="col">Position</th>
-                      </tr>
-                    </thead>
-                    <tbody>
-                      {% for worker in worker_list %}
-                      <tr>
-                        <th scope="row"><a href="{% url 'task_manager:worker-detail' pk=worker.pk %}" class="btn btn-primary">{{ worker.pk }}</a></th>
-                        <td>{{ worker.first_name }}</td>
-                        <td>{{ worker.last_name }}</td>
-                        <td>{{ worker.position }}</td>
-                      </tr>
-                      {% endfor %}
-                    </tbody>
-                  </table>
-                {% else %}
-                <p>There are no workers in the company.</p>
-              {% endif %}
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
+  <h4 class="card-title">Worker table <a href="{% url 'task_manager:worker-create' %}" class="btn btn-primary link-to-page">Create</a></h4>
+  <p class="card-description">
+    List of all workers
+  </p>
+  <div class="table-responsive">
+    {% if worker_list %}
+      <table class="table table-hover">
+        <thead>
+          <tr>
+            <th scope="col">#</th>
+            <th scope="col">First name</th>
+            <th scope="col">Last name</th>
+            <th scope="col">Position</th>
+          </tr>
+        </thead>
+        <tbody>
+          {% for worker in worker_list %}
+          <tr>
+            <th scope="row"><a href="{% url 'task_manager:worker-detail' pk=worker.pk %}" class="btn btn-primary">{{ worker.pk }}</a></th>
+            <td>{{ worker.first_name }}</td>
+            <td>{{ worker.last_name }}</td>
+            <td>{{ worker.position }}</td>
+          </tr>
+          {% endfor %}
+        </tbody>
+      </table>
+    {% else %}
+    <p>There are no workers in the company.</p>
+  {% endif %}
   </div>
 {% endblock %}
