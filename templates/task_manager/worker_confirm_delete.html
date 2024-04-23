@@ -1,9 +1,18 @@
 {% extends "base.html" %}
 {% block content %}
-  <h1>Delete worker?</h1>
-  <form action="" method="post">
-    {% csrf_token %}
-    <input type="submit" value="Yes" class="btn btn-danger">
-  <a href="{% url 'task_manager:worker-detail' pk=worker.pk %}" class="btn btn-secondary">Back</a>
-  </form>
+  <div class="main-panel">
+    <div class="content-wrapper">
+      <div class="row">
+        <div class="col-lg-12 stretch-card">
+          <div class="card">
+            <div class="card-body">
+              <h4 class="card-title">Delete worker?</h4>
+              <p class="card-description">
+                You are sure that you want to delete the worker?
+              </p>
+              <form action="" method="post">
+                {% csrf_token %}
+                <input type="submit" value="Yes" class="btn btn-danger">
+              <a href="{% url 'task_manager:worker-detail' pk=worker.pk %}" class="btn btn-secondary">Back</a>
+              </form>
 {% endblock %}

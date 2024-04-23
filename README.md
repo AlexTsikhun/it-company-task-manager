@@ -22,4 +22,4 @@ toDo
 future work - add alternative solution (client side with JS) for completed/uncompleted tasks
 when in `all`, btn should be unactive
 add checkbox for tasks in the main task-list page (and save with js??)
-is_complete shouldn't be clickable when create task
+theme

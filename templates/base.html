@@ -8,27 +8,30 @@
         integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH"
         crossorigin="anonymous">
   {% load static %}
-  <link rel="stylesheet" href="{% static 'css/styles.css' %}">
+{#  <link rel="stylesheet" href="{% static 'css/styles.css' %}">#}
+  {% include 'includes/styles.html' %}
+
 
 </head>
 <body>
+  <div class="container-scroller">
     {% block navigation %}
-    
+
       {% include 'includes/navigation.html' %}
-    
+
     {% endblock navigation %}
-    
-<div class="container-fluid">
-  <div class="row">
-    <div class="col-sm-2">
+    <div class="container-fluid page-body-wrapper">
       {% block sidebar %}
-        {% include "includes/sidebar.html" %}
-      {% endblock %}
-    </div>
-    <div class="col-sm-10">
-      {% block content %}{% endblock %}
-    </div>
+
+        {% include 'includes/sidebar.html' %}
+
+      {% endblock sidebar %}
+      {% block content %}{% endblock content %}
   </div>
-</div>
+  </div>
+
+  {% include 'includes/scripts.html' %}
+  {% block extra_js %}{% endblock extra_js %}
+
 </body>
 </html>
