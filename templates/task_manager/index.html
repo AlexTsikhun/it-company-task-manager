@@ -91,7 +91,7 @@
                                 <div class="row">
                                   <div class="col-sm-4">
                                     <p class="status-summary-ight-white mb-1">Closed Value</p>
-                                    <h2 class="text-info">357</h2>
+                                    <h2 class="text-info">{{ closed_task_counter }}</h2>
                                   </div>
                                   <div class="col-sm-8">
                                     <div class="status-summary-chart-wrapper pb-4">
@@ -123,8 +123,8 @@
                                         <div id="visitperday" class="progressbar-js-circle pr-2"></div>
                                       </div>
                                       <div>
-                                        <p class="text-small mb-2">Visits per day</p>
-                                        <h4 class="mb-0 fw-bold">9065</h4>
+                                        <p class="text-small mb-2">Your visits</p>
+                                        <h4 class="mb-0 fw-bold">{{ num_visits }}</h4>
                                       </div>
                                     </div>
                                   </div>

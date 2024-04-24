@@ -11,7 +11,18 @@ from task_manager.models import Worker, Task, TaskType, Position
 
 def index(request):
     res = Worker.objects.count()
-    return render(request, template_name="task_manager/index.html", context={"ind": res})
+
+    num_visits = request.session.get("num_visits", 0)
+    request.session["num_visits"] = num_visits + 1
+
+    closed_task_counter = Task.objects.filter(is_completed=True).count()
+
+    context = {
+        "ind": res,
+        "num_visits": num_visits + 1,
+        "closed_task_counter": closed_task_counter,
+    }
+    return render(request, template_name="task_manager/index.html", context=context)
 
 
 class WorkerListView(generic.ListView):

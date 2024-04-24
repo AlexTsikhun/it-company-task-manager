@@ -22,10 +22,9 @@ toDo
 future work - add alternative solution (client side with JS) for completed/uncompleted tasks
 when in `all`, btn should be unactive
 add checkbox for tasks in the main task-list page (and save with js??)
-theme
 show selected tab in tasks
 placeholder to fields in forms
 font size
 btns in form
-btns right
 greeting when not login
+total visitors counter
