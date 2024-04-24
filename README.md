@@ -25,3 +25,7 @@ add checkbox for tasks in the main task-list page (and save with js??)
 theme
 show selected tab in tasks
 placeholder to fields in forms
+font size
+btns in form
+btns right
+greeting when not login

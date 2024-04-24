@@ -7,6 +7,6 @@
   <form action="" method="post">
     {% csrf_token %}
     <input type="submit" value="Yes" class="btn btn-danger">
-  <a href="{% url 'task_manager:worker-detail' pk=worker.pk %}" class="btn btn-secondary">Back</a>
+    <a href="{% url 'task_manager:worker-detail' pk=worker.pk %}" class="btn btn-secondary">Back</a>
   </form>
 {% endblock %}

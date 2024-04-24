@@ -1,0 +1,12 @@
+{% extends "base.html" %}
+{% block content %}
+  <h4 class="card-title">Delete task?</h4>
+  <p class="card-description">
+    You are sure that you want to delete the task?
+  </p>
+  <form action="" method="post">
+    {% csrf_token %}
+    <input type="submit" value="Yes" class="btn btn-danger">
+    <a href="{% url 'task_manager:task-detail' pk=task.pk %}" class="btn btn-secondary">Back</a>
+  </form>
+{% endblock %}
