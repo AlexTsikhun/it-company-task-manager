@@ -2,13 +2,12 @@
 {% load crispy_forms_filters %}
 {% block content %}
   <h4 class="card-title">{{ object|yesno:"Update,Create" }} worker</h4>
-   <div class="form-group">
-
-  <form action="" method="post" class="forms-sample" novalidate>
-    {% csrf_token %}
-    {{ form|crispy }}
-    <input type="submit" class="btn btn-primary me-2">
-    <a href="{% url 'task_manager:worker-list' %}" class="btn btn-light">Cancel</a>
-  </form>
-   </div>
+  <div class="form-group">
+    <form action="" method="post" class="forms-sample" novalidate>
+      {% csrf_token %}
+      {{ form|crispy }}
+      <input type="submit" class="btn btn-primary me-2">
+      <a href="{% url 'task_manager:worker-list' %}" class="btn btn-light">Cancel</a>
+    </form>
+  </div>
 {% endblock %}
