@@ -23,5 +23,4 @@
   <a href="{% url 'task_manager:task-delete' pk=task.pk %}" class="btn btn-danger">Delete</a>
   <a href="{% url 'task_manager:task-list' %}" class="btn btn-secondary">Back</a>
   <a style="float: right" href="{% url 'task_manager:task-complete' pk=task.pk %}" class="btn btn-primary">{{ task.is_completed|yesno:"Incomplete,Complete" }}</a>
-
 {% endblock %}

@@ -20,12 +20,23 @@ toDo
 - my task
 
 future work - add alternative solution (client side with JS) for completed/uncompleted tasks
+
 when in `all`, btn should be unactive
+
 add checkbox for tasks in the main task-list page (and save with js??)
+
 show selected tab in tasks
+
 placeholder to fields in forms
+
 font size
+
 btns in form
+
 greeting when not login
+
 total visitors counter
+
 title
+
+in long table or list don't scroll all page - scroll olny table or list 
