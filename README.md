@@ -28,3 +28,4 @@ font size
 btns in form
 greeting when not login
 total visitors counter
+title
