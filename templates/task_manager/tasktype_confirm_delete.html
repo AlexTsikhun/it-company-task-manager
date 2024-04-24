@@ -1,6 +1,9 @@
 {% extends "base.html" %}
 {% block content %}
-  <h1>Delete task type?</h1>
+  <h4 class="card-title">Delete task type?</h4>
+  <p class="card-description">
+    You are sure that you want to delete this task type?
+  </p>
   <form action="" method="post">
     {% csrf_token %}
     <input type="submit" value="Yes" class="btn btn-danger">
