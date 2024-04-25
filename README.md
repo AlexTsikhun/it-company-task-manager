@@ -40,3 +40,17 @@ total visitors counter
 title
 
 in long table or list don't scroll all page - scroll olny table or list 
+
+registration using installed app
+
+### Installation
+```python
+git clone https://github.com/AlexTsikhun/it-company-task-manager
+cd it-company-task-manager
+python3 -m venv .venv
+pip install -r requirements.txt
+python3 manage.py makemigations
+python3 manage.py migate
+python3 manage.py runserver
+
+```

@@ -131,11 +131,6 @@ class PositionDeleteView(generic.DeleteView):
     success_url = reverse_lazy("task_manager:position-list")
 
 
-def user_logout(request):
-    logout(request)
-    return render(request, 'registration/logged_out.html', {})
-
-
 def task_completed(request):
     completed_tasks = Task.objects.filter(is_completed=True)
     context = {
