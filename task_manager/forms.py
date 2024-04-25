@@ -25,3 +25,37 @@ class TaskForm(forms.ModelForm):
     class Meta:
         model = Task
         fields = "__all__"
+
+
+class RegistrationForm(UserCreationForm):
+    password1 = forms.CharField(
+        label="Password",
+        widget=forms.PasswordInput(attrs={
+            'class': 'form-control form-control-lg',
+            'placeholder': 'Password'
+        }),
+    )
+    password2 = forms.CharField(
+        label="Password Confirmation",
+        widget=forms.PasswordInput(attrs={
+            'class': 'form-control form-control-lg',
+            'placeholder': 'Password Confirmation'
+        }),
+    )
+
+    class Meta:
+        model = get_user_model()
+        fields = ('username', 'email', )
+
+        widgets = {
+            'username': forms.TextInput(attrs={
+                    'class': 'form-control form-control-lg',
+                    'placeholder': 'Username'
+                }
+            ),
+            'email': forms.EmailInput(attrs={
+                'class': 'form-control form-control-lg',
+                'placeholder': 'Email'
+                }
+            )
+        }

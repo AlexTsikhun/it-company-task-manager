@@ -1,11 +1,11 @@
 from django.contrib.auth import logout
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.http import HttpResponseRedirect
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 from django.urls import reverse_lazy, reverse
 from django.views import generic
 
-from task_manager.forms import WorkerCreationForm, TaskForm
+from task_manager.forms import WorkerCreationForm, TaskForm, RegistrationForm
 from task_manager.models import Worker, Task, TaskType, Position
 
 
@@ -156,3 +156,20 @@ def complete_task(request, pk):
     task_complete.save()
 
     return HttpResponseRedirect(reverse("task_manager:task-not-completed"))
+
+
+# Authentication
+def registration(request):
+    if request.method == 'POST':
+        form = RegistrationForm(request.POST)
+        if form.is_valid():
+            form.save()
+            print('Account created successfully!')
+            return redirect('/accounts/login/')
+        else:
+            print("Registration failed!")
+    else:
+        form = RegistrationForm()
+
+    context = {'form': form}
+    return render(request, 'accounts/register.html', context)

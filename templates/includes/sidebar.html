@@ -58,13 +58,13 @@
             <button type="submit" class="btn btn-light">Logout</button>
           </form>
           {% else %}
-{#            {% if request.user.is_authenticated %}#}
-{#            <li class="nav-item"> <a class="nav-link" href="{% url 'password_change' %}"> Change Password </a></li>#}
-{#            <li class="nav-item"> <a class="nav-link" href="{% url 'logout' %}"> Logout </a></li>#}
-{#            {% else %}#}
-{#            <li class="nav-item"> <a class="nav-link" href="{% url 'login' %}"> Login </a></li>#}
-{#            <li class="nav-item"> <a class="nav-link" href="{% url 'register' %}"> Register </a></li>#}
-{#            {% endif %}#}
+            {% if request.user.is_authenticated %}
+            <li class="nav-item"> <a class="nav-link" href="{% url 'password_change' %}"> Change Password </a></li>
+            <li class="nav-item"> <a class="nav-link" href="{% url 'logout' %}"> Logout </a></li>
+            {% else %}
+            <li class="nav-item"> <a class="nav-link" href="{% url 'login' %}"> Login </a></li>
+            <li class="nav-item"> <a class="nav-link" href="{% url 'register' %}"> Register </a></li>
+            {% endif %}
           {% endif %}
         </ul>
       </div>

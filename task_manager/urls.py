@@ -23,7 +23,9 @@ from task_manager.views import (
     PositionUpdateView,
     PositionDeleteView,
     task_completed,
-    task_not_completed, complete_task,
+    task_not_completed,
+    complete_task,
+    registration,
 )
 
 urlpatterns = [
@@ -110,6 +112,9 @@ urlpatterns = [
         PositionDeleteView.as_view(),
         name="position-delete"
     ),
+
+    path('accounts/register/', registration, name='register'),
+
 ]
 
 app_name = "task_manager"
