@@ -13,35 +13,24 @@ So, I decided to implement my own Task Manager, which will handle all
 - For each worker it is shown separately: completed and not completed tasks.
 - Add Tags (like landing-page-layout or python-refactoring) for tasks with Many-to-Many relationship.
 - Add support for Projects and Teams, different teams can work on different projects, and also inside projects there are a lot of tasks to do (complicated).
+- total visitors counter
+- add search
 
 
 toDo
 - add which worker should do this task/ or has this position
 - my task
+- future work - add alternative solution (client side with JS) for completed/uncompleted tasks
+- when in `all`, btn should be unactive, show selected tab in tasks
+- add checkbox for tasks in the main task-list page (and save with js??)
+- placeholder to fields in forms
+- bigger font size?
+- btns in form
+- greeting when not login
+- title
+- in long table or list don't scroll all page - scroll olny table or list
+- json file with data 
 
-future work - add alternative solution (client side with JS) for completed/uncompleted tasks
-
-when in `all`, btn should be unactive
-
-add checkbox for tasks in the main task-list page (and save with js??)
-
-show selected tab in tasks
-
-placeholder to fields in forms
-
-font size
-
-btns in form
-
-greeting when not login
-
-total visitors counter
-
-title
-
-in long table or list don't scroll all page - scroll olny table or list 
-
-registration using installed app
 
 ### Installation
 ```python
