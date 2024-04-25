@@ -1,0 +1,11 @@
+asgiref==3.8.1
+crispy-bootstrap4==2024.1
+Django==5.0.4
+django-admin-star==1.0.4
+django-crispy-forms==2.1
+flake8==7.0.0
+mccabe==0.7.0
+pycodestyle==2.11.1
+pyflakes==3.2.0
+sqlparse==0.4.4
+typing_extensions==4.11.0
