@@ -54,3 +54,6 @@ python3 manage.py migate
 python3 manage.py runserver
 
 ```
+
+#### Page example
+![Screenshot_20240425_133118.png](..%2F..%2F..%2FPictures%2FScreenshot_20240425_133118.png)

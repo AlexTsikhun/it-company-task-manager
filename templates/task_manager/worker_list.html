@@ -13,6 +13,7 @@
             <th scope="col">#</th>
             <th scope="col">First name</th>
             <th scope="col">Last name</th>
+            <th scope="col">Username</th>
             <th scope="col">Position</th>
           </tr>
         </thead>
@@ -22,6 +23,7 @@
             <th scope="row"><a href="{% url 'task_manager:worker-detail' pk=worker.pk %}" class="btn btn-light btn-rounded btn-fw">{{ worker.pk }}</a></th>
             <td>{{ worker.first_name }}</td>
             <td>{{ worker.last_name }}</td>
+            <td>{{ worker.username }}</td>
             <td>{{ worker.position }}</td>
           </tr>
           {% endfor %}
