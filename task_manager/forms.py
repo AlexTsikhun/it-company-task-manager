@@ -7,9 +7,7 @@ from task_manager.models import Worker, Task
 class WorkerCreationForm(UserCreationForm):
     class Meta(UserCreationForm.Meta):
         model = Worker
-        fields = UserCreationForm.Meta.fields + (
-            "position",
-        )
+        fields = UserCreationForm.Meta.fields + ("position",)
 
 
 class TaskForm(forms.ModelForm):
@@ -20,7 +18,7 @@ class TaskForm(forms.ModelForm):
 
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
-        self.fields['is_completed'].widget.attrs['disabled'] = True
+        self.fields["is_completed"].widget.attrs["disabled"] = True
 
     class Meta:
         model = Task
@@ -30,32 +28,41 @@ class TaskForm(forms.ModelForm):
 class RegistrationForm(UserCreationForm):
     password1 = forms.CharField(
         label="Password",
-        widget=forms.PasswordInput(attrs={
-            'class': 'form-control form-control-lg',
-            'placeholder': 'Password'
-        }),
+        widget=forms.PasswordInput(
+            attrs={
+                "class": "form-control form-control-lg",
+                "placeholder": "Password"
+            }
+        ),
     )
     password2 = forms.CharField(
         label="Password Confirmation",
-        widget=forms.PasswordInput(attrs={
-            'class': 'form-control form-control-lg',
-            'placeholder': 'Password Confirmation'
-        }),
+        widget=forms.PasswordInput(
+            attrs={
+                "class": "form-control form-control-lg",
+                "placeholder": "Password Confirmation",
+            }
+        ),
     )
 
     class Meta:
         model = get_user_model()
-        fields = ('username', 'email', )
+        fields = (
+            "username",
+            "email",
+        )
 
         widgets = {
-            'username': forms.TextInput(attrs={
-                    'class': 'form-control form-control-lg',
-                    'placeholder': 'Username'
+            "username": forms.TextInput(
+                attrs={
+                    "class": "form-control form-control-lg",
+                    "placeholder": "Username",
                 }
             ),
-            'email': forms.EmailInput(attrs={
-                'class': 'form-control form-control-lg',
-                'placeholder': 'Email'
+            "email": forms.EmailInput(
+                attrs={
+                    "class": "form-control form-control-lg",
+                    "placeholder": "Email"
                 }
-            )
+            ),
         }

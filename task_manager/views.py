@@ -22,7 +22,9 @@ def index(request):
         "num_visits": num_visits + 1,
         "closed_task_counter": closed_task_counter,
     }
-    return render(request, template_name="task_manager/index.html", context=context)
+    return render(
+        request, template_name="task_manager/index.html", context=context
+    )
 
 
 class WorkerListView(generic.ListView):
@@ -42,7 +44,14 @@ class WorkerDetailView(generic.DetailView):
 
 class WorkerUpdateView(generic.UpdateView):
     model = Worker
-    fields = ("username", "first_name", "last_name", "email", "date_joined", "position",)
+    fields = (
+        "username",
+        "first_name",
+        "last_name",
+        "email",
+        "date_joined",
+        "position",
+    )
     success_url = reverse_lazy("task_manager:worker-list")
 
 
@@ -160,16 +169,16 @@ def complete_task(request, pk):
 
 # Authentication
 def registration(request):
-    if request.method == 'POST':
+    if request.method == "POST":
         form = RegistrationForm(request.POST)
         if form.is_valid():
             form.save()
-            print('Account created successfully!')
-            return redirect('/accounts/login/')
+            print("Account created successfully!")
+            return redirect("/accounts/login/")
         else:
             print("Registration failed!")
     else:
         form = RegistrationForm()
 
-    context = {'form': form}
-    return render(request, 'accounts/register.html', context)
+    context = {"form": form}
+    return render(request, "accounts/register.html", context)

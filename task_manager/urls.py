@@ -29,13 +29,11 @@ from task_manager.views import (
 )
 
 urlpatterns = [
-    path("", index, name='index'),
+    path("", index, name="index"),
     path("workers/", WorkerListView.as_view(), name="worker-list"),
     path("workers/create/", WorkerCreateView.as_view(), name="worker-create"),
     path(
-        "workers/<int:pk>/",
-        WorkerDetailView.as_view(),
-        name="worker-detail"
+        "workers/<int:pk>/", WorkerDetailView.as_view(), name="worker-detail"
     ),
     path(
         "workers/<int:pk>/update/",
@@ -52,20 +50,14 @@ urlpatterns = [
     path("tasks/create/", TaskCreateView.as_view(), name="task-create"),
     path("tasks/<int:pk>/", TaskDetailView.as_view(), name="task-detail"),
     path(
-        "tasks/<int:pk>/update/",
-        TaskUpdateView.as_view(),
-        name="task-update"
+        "tasks/<int:pk>/update/", TaskUpdateView.as_view(), name="task-update"
     ),
     path(
-        "tasks/<int:pk>/delete/",
-        TaskDeleteView.as_view(),
-        name="task-delete"
+        "tasks/<int:pk>/delete/", TaskDeleteView.as_view(), name="task-delete"
     ),
     path("tasks/completed/", task_completed, name="task-completed"),
     path(
-        "tasks/not-completed/",
-        task_not_completed,
-        name="task-not-completed"
+        "tasks/not-completed/", task_not_completed, name="task-not-completed"
     ),
     path("task/<int:pk>/complete/", complete_task, name="task-complete"),
 
@@ -83,12 +75,12 @@ urlpatterns = [
     path(
         "task_types/<int:pk>/update/",
         TaskTypeUpdateView.as_view(),
-        name="task_type-update"
+        name="task_type-update",
     ),
     path(
         "task_types/<int:pk>/delete/",
         TaskTypeDeleteView.as_view(),
-        name="task_type-delete"
+        name="task_type-delete",
     ),
 
     path("positions/", PositionListView.as_view(), name="position-list"),
@@ -105,16 +97,15 @@ urlpatterns = [
     path(
         "positions/<int:pk>/update/",
         PositionUpdateView.as_view(),
-        name="position-update"
+        name="position-update",
     ),
     path(
         "positions/<int:pk>/delete/",
         PositionDeleteView.as_view(),
-        name="position-delete"
+        name="position-delete",
     ),
 
-    path('accounts/register/', registration, name='register'),
-
+    path("accounts/register/", registration, name="register"),
 ]
 
 app_name = "task_manager"
