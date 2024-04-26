@@ -32,8 +32,16 @@ toDo
 - json file with data 
 - add tests
 
+## Technologies Used
+
+- Django
+- Sqlite3
+- HTML (Jinja)/CSS/Javascript
+- Bootstrap
+- django-admin-star library
+
 ### Installation
-```python
+```shell
 git clone https://github.com/AlexTsikhun/it-company-task-manager
 cd it-company-task-manager
 python3 -m venv .venv
@@ -44,5 +52,23 @@ python3 manage.py runserver
 
 ```
 
+#### DB Structure:
+![img.png](images/img.png)
+
+
 #### Page example
 ![Screenshot_20240425_133118.png](..%2F..%2F..%2FPictures%2FScreenshot_20240425_133118.png)
+
+
+
+Add a list of technologies used in the README.md;
+
+Make sure that all images are loaded successfully in the project description;
+
+Add blank lines to the end of the lines where needed;
+
+Add a sample.env file with SECRET_KEY with dummy value and retrieve SECRET_KEY from an environment in the settings.py . Do not store it in a repository;
+
+Include in .gitignore file only entities specific to your project, remove the rest;
+
+Remove redundant comments and format properly urls.py files.
