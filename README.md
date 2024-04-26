@@ -30,7 +30,7 @@ toDo
 - title
 - in long table or list don't scroll all page - scroll olny table or list
 - json file with data 
-
+- add tests
 
 ### Installation
 ```python
