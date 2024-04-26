@@ -165,7 +165,6 @@ def complete_task(request, pk):
     return HttpResponseRedirect(reverse("task_manager:task-not-completed"))
 
 
-# Authentication
 def registration(request):
     if request.method == "POST":
         form = RegistrationForm(request.POST)
