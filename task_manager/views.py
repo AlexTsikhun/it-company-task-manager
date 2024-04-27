@@ -21,9 +21,9 @@ def index(request):
         "num_visits": num_visits + 1,
         "closed_task_counter": closed_task_counter,
     }
-    return render(
-        request, template_name="task_manager/index.html", context=context
-    )
+    return render(request,
+                  template_name="task_manager/index.html",
+                  context=context)
 
 
 class WorkerListView(generic.ListView):

@@ -63,7 +63,9 @@ urlpatterns = [
     ),
     path("tasks/completed/", task_completed, name="task-completed"),
     path(
-        "tasks/not-completed/", task_not_completed, name="task-not-completed"
+        "tasks/not-completed/",
+        task_not_completed,
+        name="task-not-completed"
     ),
     path("task/<int:pk>/complete/", complete_task, name="task-complete"),
 
