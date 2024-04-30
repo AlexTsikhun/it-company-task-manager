@@ -62,3 +62,5 @@ toDo
 - in long table or list don't scroll all page - scroll olny table or list
 - json file with data 
 - add tests
+
+bad architecture: TaskListView == task_completed() 
