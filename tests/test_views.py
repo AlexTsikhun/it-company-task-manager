@@ -6,6 +6,9 @@ from task_manager.models import Worker, Position, Task, TaskType
 
 WORKER_URL = reverse("task_manager:worker-list")
 TASK_URL = reverse("task_manager:task-list")
+TASKTYPE_URL = reverse("task_manager:task_type-list")
+POSITION_URL = reverse("task_manager:position-list")
+
 
 class PublicWorkerTest(TestCase):
     def setUp(self):
@@ -104,13 +107,44 @@ class PrivateTaskTest(TestCase):
     def test_retrieve_tasks(self):
         self.assertEqual(self.resp.status_code, 200)
 
-        manufacturers = Task.objects.all()
+        tasks = Task.objects.all()
         self.assertEqual(
             list(self.resp.context["object_list"]),
-            list(manufacturers)
+            list(tasks)
         )
 
     def test_check_template_tasks(self):
         self.assertTemplateUsed(
             self.resp, "task_manager/task_list.html"
         )
+
+
+class PrivateTaskTypeTest(TestCase):
+    def setUp(self):
+        self.user = get_user_model().objects.create_user(
+            username="test5",
+            password="password3"
+        )
+        self.client.force_login(self.user)
+
+        TaskType.objects.create(name="task type")
+        self.resp = self.client.get(TASKTYPE_URL)
+
+    def test_retrieve_tasks(self):
+        self.assertEqual(self.resp.status_code, 200)
+
+        tasks_type = TaskType.objects.all()
+        self.assertEqual(
+            list(self.resp.context["object_list"]),
+            list(tasks_type)
+        )
+
+    def test_check_template_tasks(self):
+        self.assertTemplateUsed(
+            self.resp, "task_manager/tasktype_list.html"
+        )
+
+    def test_tasktype_url_accessible_by_name(self):
+        response = self.client.get(TASKTYPE_URL)
+        self.assertEqual(response.status_code, 200)
+
