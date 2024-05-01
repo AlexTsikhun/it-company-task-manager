@@ -148,3 +148,39 @@ class PrivateTaskTypeTest(TestCase):
         response = self.client.get(TASKTYPE_URL)
         self.assertEqual(response.status_code, 200)
 
+
+class PrivatePositionTest(TestCase):
+    def setUp(self):
+        self.user = get_user_model().objects.create_user(
+            username="test5",
+            password="password3"
+        )
+        self.client.force_login(self.user)
+
+        Position.objects.create(name="position")
+        self.resp = self.client.get(POSITION_URL)
+
+    def test_retrieve_tasks(self):
+        self.assertEqual(self.resp.status_code, 200)
+
+        position = Position.objects.all()
+        self.assertEqual(
+            list(self.resp.context["object_list"]),
+            list(position)
+        )
+
+    def test_check_template_tasks(self):
+        self.assertTemplateUsed(
+            self.resp, "task_manager/position_list.html"
+        )
+
+    def test_position_url_exists_at_desired_location(self):
+        # checks specific path, without domain
+        response = self.client.get('/positions/')
+        self.assertEqual(response.status_code, 200)
+
+    def test_position_url_accessible_by_name(self):
+        # generates the URL from its name in the URL configuration
+        response = self.client.get(POSITION_URL)
+        self.assertEqual(response.status_code, 200)
+
