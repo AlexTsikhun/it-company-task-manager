@@ -5,7 +5,12 @@ from django.shortcuts import render, redirect
 from django.urls import reverse_lazy, reverse
 from django.views import generic
 
-from task_manager.forms import WorkerCreationForm, TaskForm, RegistrationForm
+from task_manager.forms import (
+    WorkerCreationForm,
+    TaskForm,
+    RegistrationForm,
+    TaskSearchForm
+)
 from task_manager.models import Worker, Task, TaskType, Position
 
 
@@ -29,7 +34,6 @@ def index(request):
 
 class WorkerListView(LoginRequiredMixin, generic.ListView):
     model = Worker
-    # context_object_name = "worker-list"
 
 
 class WorkerCreateView(LoginRequiredMixin, generic.CreateView):
@@ -63,6 +67,23 @@ class WorkerDeleteView(LoginRequiredMixin, generic.DeleteView):
 
 class TaskListView(LoginRequiredMixin, generic.ListView):
     model = Task
+
+    # add search form to the page
+    def get_context_data(self, *, object_list=None, **kwargs):
+        context = super(TaskListView, self).get_context_data(**kwargs)
+        name = self.request.GET.get("name", "")
+        context["search_form"] = TaskSearchForm(
+            initial={"name": name}
+        )
+        return context
+
+    # update data in the page after searching
+    def get_queryset(self):
+        queryset = Task.objects.all()
+        name = self.request.GET.get("name")
+        if name:
+            return queryset.filter(name__icontains=name)
+        return queryset
 
 
 class TaskCreateView(LoginRequiredMixin, generic.CreateView):

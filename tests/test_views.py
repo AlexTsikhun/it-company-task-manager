@@ -183,4 +183,3 @@ class PrivatePositionTest(TestCase):
         # generates the URL from its name in the URL configuration
         response = self.client.get(POSITION_URL)
         self.assertEqual(response.status_code, 200)
-
