@@ -56,11 +56,9 @@ toDo
 - add checkbox for tasks in the main task-list page (and save with js??)
 - placeholder to fields in forms
 - bigger font size?
-- btns in form
 - greeting when not login
 - title
 - in long table or list don't scroll all page - scroll olny table or list
 - json file with data 
 - add tests
 
-bad architecture: TaskListView == task_completed() 

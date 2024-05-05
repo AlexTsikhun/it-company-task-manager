@@ -25,7 +25,7 @@ from task_manager.views import (
     task_completed,
     task_not_completed,
     complete_task,
-    registration,
+    registration, TaskCompletedView,
 )
 
 urlpatterns = [
@@ -61,7 +61,7 @@ urlpatterns = [
         TaskDeleteView.as_view(),
         name="task-delete"
     ),
-    path("tasks/completed/", task_completed, name="task-completed"),
+    path("tasks/completed/", TaskCompletedView.as_view(), name="task-completed"),
     path(
         "tasks/not-completed/",
         task_not_completed,

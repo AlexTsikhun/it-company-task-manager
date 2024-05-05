@@ -163,9 +163,42 @@ class PositionDeleteView(LoginRequiredMixin, generic.DeleteView):
     success_url = reverse_lazy("task_manager:position-list")
 
 
+class TaskCompletedView(LoginRequiredMixin, generic.ListView):
+    # queryset = Task.objects.filter(is_completed=True)
+    paginate_by = 10
+
+    # add search form to the page
+    def get_context_data(self, *, object_list=None, **kwargs):
+        context = super(TaskCompletedView, self).get_context_data(**kwargs)
+        name = self.request.GET.get("name", "")
+        context["search_form"] = TaskSearchForm(
+            initial={"name": name}
+        )
+        return context
+
+    # update data in the page after searching
+    def get_queryset(self):
+        queryset = Task.objects.filter(is_completed=True)
+        name = self.request.GET.get("name")
+        if name:
+            return queryset.filter(name__icontains=name)
+        return queryset
+
+
 @login_required
 def task_completed(request):
     completed_tasks = Task.objects.filter(is_completed=True)
+
+    query_name = request.GET.get("name", "")
+    if query_name:
+        filtered_completed_tasks = completed_tasks.filter(
+            name__icontains=query_name
+        )
+        context = {
+            "filtered_completed_tasks": filtered_completed_tasks
+        }
+        return render(request, "task_manager/task_completed.html", context)
+
     context = {
         "completed_tasks": completed_tasks,
     }
