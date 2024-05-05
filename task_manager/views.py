@@ -34,6 +34,7 @@ def index(request):
 
 class WorkerListView(LoginRequiredMixin, generic.ListView):
     model = Worker
+    paginate_by = 5
 
 
 class WorkerCreateView(LoginRequiredMixin, generic.CreateView):

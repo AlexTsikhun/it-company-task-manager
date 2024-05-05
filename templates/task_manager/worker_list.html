@@ -29,6 +29,9 @@
           {% endfor %}
         </tbody>
       </table>
+      {% block pagination %}
+        {% include 'includes/pagination.html' %}
+      {% endblock %}
     {% else %}
     <p>There are no workers in the company.</p>
   {% endif %}
