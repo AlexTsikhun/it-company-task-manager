@@ -3,6 +3,7 @@ from django.test import TestCase, Client, RequestFactory
 from django.urls import reverse
 
 from task_manager.models import Worker, Position, Task, TaskType
+from task_manager.views import TaskListView
 
 WORKER_URL = reverse("task_manager:worker-list")
 TASK_URL = reverse("task_manager:task-list")
@@ -183,3 +184,95 @@ class PrivatePositionTest(TestCase):
         # generates the URL from its name in the URL configuration
         response = self.client.get(POSITION_URL)
         self.assertEqual(response.status_code, 200)
+
+
+class SearchTaskTest(TestCase):
+    def setUp(self):
+        self.user = get_user_model().objects.create_user(
+            username="test5",
+            password="password3"
+        )
+        self.client.force_login(self.user)
+
+        user_dict = []
+
+        for i in range(1, 3):
+            task_type_name = f"task type{i}"
+            task_type_obj = TaskType.objects.create(name=task_type_name)
+
+            user_dict.append({
+                "name": f"name{i}",
+                "description": f"description{i}",
+                "is_completed": False,
+                "priority": "low" if i % 2 else "medium",
+                "task_type": task_type_obj,
+            })
+
+        tasks = Task.objects.bulk_create(
+            Task(
+                name=user["name"],
+                description=user["description"],
+                is_completed=user["is_completed"],
+                priority=user["priority"],
+                task_type=user["task_type"]
+            ) for user in user_dict
+        )
+
+        position = Position.objects.create(name="position")
+        [task.assignees.set([Worker.objects.create(
+            username=f"username{i}",
+            password=f"password{i}",
+            position=position
+        )]) for i, task in enumerate(tasks)]
+
+        self.factory = RequestFactory()
+
+    def test_search_task_valid_result(self):
+        test_data = "1"
+        request = self.factory.get(TASK_URL, {"name": test_data})
+        request.user = self.user
+
+        view = TaskListView.as_view()
+        response = view(request)
+
+        self.assertEqual(response.status_code, 200)
+
+        queryset = response.context_data["object_list"]
+        self.assertEqual(queryset.count(), 1)
+        self.assertQuerysetEqual(
+            queryset, Task.objects.filter(name__icontains=test_data)
+        )
+
+    def test_search_car_no_result(self):
+        test_data = "$$$"
+        request = self.factory.get(TASK_URL, {"name": test_data})
+        request.user = self.user
+
+        view = TaskListView.as_view()
+        response = view(request)
+
+        self.assertEqual(response.status_code, 200)
+
+        queryset = response.context_data["object_list"]
+        self.assertEqual(queryset.count(), 0)
+        self.assertQuerysetEqual(
+            queryset, Task.objects.filter(name__icontains=test_data)
+        )
+
+    def test_search_car_all_result(self):
+        test_data = ""
+        request = self.factory.get(TASK_URL, {"name": test_data})
+        request.user = self.user
+
+        view = TaskListView.as_view()
+        response = view(request)
+
+        self.assertEqual(response.status_code, 200)
+
+        queryset = response.context_data["object_list"]
+        self.assertEqual(queryset.count(), 2)
+        self.assertQuerysetEqual(
+            queryset,
+            Task.objects.filter(name__icontains=test_data),
+            ordered=False
+        )
