@@ -12,6 +12,9 @@
         {{ task }}
       </li>
     {% endfor %}
+    {% block paginate %}
+      {% include 'includes/pagination.html' %}
+    {% endblock %}
     {% else %}
       <p>There are no tasks in the team.</p>
     </ul>

@@ -68,6 +68,7 @@ class WorkerDeleteView(LoginRequiredMixin, generic.DeleteView):
 
 class TaskListView(LoginRequiredMixin, generic.ListView):
     model = Task
+    paginate_by = 10
 
     # add search form to the page
     def get_context_data(self, *, object_list=None, **kwargs):
