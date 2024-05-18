@@ -20,7 +20,12 @@
   <div class="navbar-menu-wrapper d-flex align-items-top">
     <ul class="navbar-nav">
       <li class="nav-item font-weight-semibold d-none d-lg-block ms-0">
-        <h1 class="welcome-text">Good Day, <span class="text-black fw-bold">{{ user.username }}</span></h1>
+        {% if user.username %}
+          <h1 class="welcome-text">Good Day, 
+            <span style="font-family: 'Noto Sans Hanunoo', monospace">{{ user.username }}</span>!</h1>
+        {% else %}
+          <h1 class="welcome-text">Good Day!</h1>
+        {% endif %}
         <h3 class="welcome-sub-text">Keep up the good work, you're doing great </h3>
       </li>
     </ul>
