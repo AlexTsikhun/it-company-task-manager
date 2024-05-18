@@ -12,8 +12,11 @@
         <a href="{% url 'task_manager:position-update' pk=position.pk %}" class="btn btn-warning link-to-page">Update</a>
       </li>
     {% endfor %}
+    </ul>
+    {% block paginate %}
+      {% include 'includes/pagination.html' %}
+    {% endblock %}
     {% else %}
       <p>There are no positions in the team.</p>
-    </ul>
   {% endif %}
 {% endblock %}
