@@ -243,7 +243,7 @@ class SearchTaskTest(TestCase):
             queryset, Task.objects.filter(name__icontains=test_data)
         )
 
-    def test_search_car_no_result(self):
+    def test_search_task_no_result(self):
         test_data = "$$$"
         request = self.factory.get(TASK_URL, {"name": test_data})
         request.user = self.user
@@ -259,7 +259,7 @@ class SearchTaskTest(TestCase):
             queryset, Task.objects.filter(name__icontains=test_data)
         )
 
-    def test_search_car_all_result(self):
+    def test_search_task_all_result(self):
         test_data = ""
         request = self.factory.get(TASK_URL, {"name": test_data})
         request.user = self.user

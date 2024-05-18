@@ -38,6 +38,8 @@
           <i class="icon-search"></i>
           {% if search_form %}
             {{ search_form }}
+          {% elif search_form_worker %}
+            {{ search_form_worker }}
           {% else %}
             <input type="search" class="form-control" placeholder="Search Here" title="Search here">
           {% endif %}

@@ -76,7 +76,20 @@ class TaskSearchForm(forms.Form):
         label="",
         widget=forms.TextInput(
             attrs={
-                "placeholder": "Search by name"
+                "placeholder": "Search by task name"
+            }
+        )
+    )
+
+
+class WorkerSearchForm(forms.Form):
+    username = forms.CharField(
+        max_length=255,
+        required=False,
+        label="",
+        widget=forms.TextInput(
+            attrs={
+                "placeholder": "Search by username"
             }
         )
     )

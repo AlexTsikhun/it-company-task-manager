@@ -9,7 +9,7 @@ from task_manager.forms import (
     WorkerCreationForm,
     TaskForm,
     RegistrationForm,
-    TaskSearchForm
+    TaskSearchForm, WorkerSearchForm
 )
 from task_manager.models import Worker, Task, TaskType, Position
 
@@ -35,6 +35,23 @@ def index(request):
 class WorkerListView(LoginRequiredMixin, generic.ListView):
     model = Worker
     paginate_by = 5
+
+    # add search form to the page
+    def get_context_data(self, *, object_list=None, **kwargs):
+        context = super(WorkerListView, self).get_context_data(**kwargs)
+        username = self.request.GET.get("username", "")
+        context["search_form_worker"] = WorkerSearchForm(
+            initial={"username": username}
+        )
+        return context
+
+    # update data in the page after searching
+    def get_queryset(self):
+        queryset = Worker.objects.all()
+        username = self.request.GET.get("username")
+        if username:
+            return queryset.filter(username__icontains=username)
+        return queryset
 
 
 class WorkerCreateView(LoginRequiredMixin, generic.CreateView):
@@ -86,7 +103,7 @@ class TaskListView(LoginRequiredMixin, generic.ListView):
         if name:
             return queryset.filter(name__icontains=name)
         return queryset
-
+    
 
 class TaskCreateView(LoginRequiredMixin, generic.CreateView):
     model = Task
