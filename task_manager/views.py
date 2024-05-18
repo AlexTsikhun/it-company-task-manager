@@ -145,6 +145,7 @@ class TaskDeleteView(LoginRequiredMixin, generic.DeleteView):
 class TaskTypeListView(LoginRequiredMixin, generic.ListView):
     model = TaskType
     context_object_name = "task_type_list"
+    paginate_by = 8
 
 
 class TaskTypeCreateView(LoginRequiredMixin, generic.CreateView):
