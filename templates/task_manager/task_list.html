@@ -6,17 +6,17 @@
   {% include "includes/task_state_buttons.html" %}
   {% if task_list %}
     <ul style="font-size: 17px" class="list-group list-group-flush list-group-item-action">
-    {% for task in task_list %}
-      <li class="list-group-item list-group-item-action">
-        <a href="{% url 'task_manager:task-detail' pk=task.pk %}">{{ task.pk }}.</a>
-        {{ task }}
-      </li>
-    {% endfor %}
+      {% for task in task_list %}
+        <li class="list-group-item list-group-item-action">
+          <a href="{% url 'task_manager:task-detail' pk=task.pk %}">{{ task.pk }}.</a>
+          {{ task }}
+        </li>
+      {% endfor %}
+    </ul>
     {% block paginate %}
       {% include 'includes/pagination.html' %}
     {% endblock %}
     {% else %}
       <p>There are no tasks in the team.</p>
-    </ul>
   {% endif %}
 {% endblock %}

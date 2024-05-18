@@ -22,11 +22,26 @@ def index(request):
 
     closed_task_counter = Task.objects.filter(is_completed=True).count()
 
+    name = request.GET.get("name", "")
+
     context = {
         "ind": res,
         "num_visits": num_visits + 1,
         "closed_task_counter": closed_task_counter,
+        "search_form": TaskSearchForm(
+            initial={"name": name}
+        ),
     }
+
+    if name:
+        queryset = Task.objects.all()
+        task_list = queryset.filter(name__icontains=name)
+
+        context["task_list"] = task_list
+        return render(request,
+                      template_name="task_manager/task_list.html",
+                      context=context)
+
     return render(request,
                   template_name="task_manager/index.html",
                   context=context)
