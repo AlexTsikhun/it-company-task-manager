@@ -59,4 +59,5 @@ toDo
 - title
 - json file with data 
 - add tests
+- in profile tab, if haven't email or name info - write it
 
