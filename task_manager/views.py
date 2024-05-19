@@ -24,6 +24,8 @@ def index(request):
 
     name = request.GET.get("name", "")
 
+    last_task = Task.objects.last()
+
     context = {
         "ind": res,
         "num_visits": num_visits + 1,
@@ -31,6 +33,7 @@ def index(request):
         "search_form": TaskSearchForm(
             initial={"name": name}
         ),
+        "last_task": last_task,
     }
 
     if name:

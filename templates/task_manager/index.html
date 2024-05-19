@@ -1,4 +1,4 @@
-{% extends 'layouts/base.html' %}
+{% extends 'base.html' %}
 {% load static %}
 
 
@@ -18,8 +18,6 @@
 
 {% block content %}
   <!-- partial -->
-  <div class="main-panel">
-    <div class="content-wrapper">
       <div class="row">
         <div class="col-sm-12">
           <div class="home-tab">
@@ -184,7 +182,7 @@
                                     <li class="d-block">
                                       <div class="form-check w-100">
                                         <label class="form-check-label">
-                                          <input class="checkbox" type="checkbox"> Lorem Ipsum is simply dummy text of the printing <i class="input-helper rounded"></i>
+                                          <input class="checkbox" type="checkbox"> {{ last_task }} <i class="input-helper rounded"></i>
                                         </label>
                                         <div class="d-flex mt-2">
                                           <div class="ps-4 text-small me-3">23 June 2020</div>
