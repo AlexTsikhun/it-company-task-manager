@@ -1,0 +1,13 @@
+{% extends "base.html" %}
+{% block content %}
+  <h4 class="card-title">Worker detail page</h4>
+  <p><strong>First name:</strong> {{ worker.first_name }}</p>
+  <p><strong>Last name:</strong> {{ worker.last_name }}</p>
+  <p><strong>Position:</strong> {{ worker.position }}</p>
+  <p><strong>Is staff:</strong> {{ worker.is_staff }}</p>
+  <p><strong>Date joined:</strong> {{ worker.date_joined }}</p>
+  
+  <a href="{% url 'task_manager:worker-update' pk=worker.pk %}" class="btn btn-warning btn-rounded btn-fw">Update</a>
+  <a href="{% url 'task_manager:worker-delete' pk=worker.pk %}" class="btn btn-danger btn-rounded btn-fw">Delete</a>
+  <a href="{% url 'task_manager:worker-list' %}" class="btn btn-secondary btn-rounded btn-fw">Back</a>
+{% endblock %}

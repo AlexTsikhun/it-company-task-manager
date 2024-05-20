@@ -1,0 +1,22 @@
+{% extends "base.html" %}
+{% block content %}
+  <h4 class="card-title">Task type list
+    <a href="{% url 'task_manager:task_type-create' %}" class="btn btn-primary link-to-page">Create</a>
+  </h4>
+  {% if task_type_list %}
+    <ul class="list-group list-group-flush list-group-item-action">
+      {% for task_type in task_type_list %}
+        <li class="list-group-item list-group-item-action">
+          <b>{{ task_type.pk }}.</b> {{ task_type }} 
+          <a href="{% url 'task_manager:task_type-delete' pk=task_type.pk %}" class="btn btn-danger link-to-page">Delete</a>
+          <a href="{% url 'task_manager:task_type-update' pk=task_type.pk %}" class="btn btn-warning link-to-page">Update</a>
+        </li>
+      {% endfor %}
+    </ul>
+    {% block paginate %}
+      {% include 'includes/pagination.html' %}
+    {% endblock %}
+    {% else %}
+      <p>There are no task types in the team.</p>
+  {% endif %}
+{% endblock %}

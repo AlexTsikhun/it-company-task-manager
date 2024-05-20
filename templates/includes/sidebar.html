@@ -1,0 +1,73 @@
+{% load i18n static admin_star %}
+
+<!-- partial:partials/_sidebar.html -->
+<nav class="sidebar sidebar-offcanvas" id="sidebar">
+  <ul class="nav">
+    <li class="nav-item {% if 'dashboard' in parent %} active {% endif %}">
+      {% if request.user.is_superuser %}
+      <a class="nav-link" href="{% url 'task_manager:index' %}">
+      {% else %}
+      <a class="nav-link" href="/">
+      {% endif %}
+        <i class="mdi mdi-grid-large menu-icon"></i>
+        <span class="menu-title">Home</span>
+      </a>
+    </li>
+    <li class="nav-item">
+      <a class="nav-link"
+         href="{% url 'task_manager:worker-list' %}">
+        <i class="menu-icon mdi mdi-file-document"></i>
+        <span class="menu-title">All workers</span>
+      </a>
+    </li>
+    <li class="nav-item">
+      <a class="nav-link"
+         href="{% url 'task_manager:task-list' %}">
+        <i class="menu-icon mdi mdi-rocket text-danger"></i>
+        <span class="menu-title fw-bold">All tasks</span>
+      </a>
+    </li>
+    <li class="nav-item">
+      <a class="nav-link"
+         href="{% url 'task_manager:task_type-list' %}">
+        <i class="menu-icon mdi mdi-file-document"></i>
+        <span class="menu-title">Task types</span>
+      </a>
+    </li>
+    <li class="nav-item">
+      <a class="nav-link"
+         href="{% url 'task_manager:position-list' %}">
+        <i class="menu-icon mdi mdi-file-document"></i>
+        <span class="menu-title fw-bold">Positions</span>
+      </a>
+    </li>
+
+    <li class="nav-item nav-category">pages</li>
+    <li class="nav-item">
+      <a class="nav-link" data-bs-toggle="collapse" href="#auth" aria-expanded="false" aria-controls="auth">
+        <i class="menu-icon mdi mdi-account-circle-outline"></i>
+        <span class="menu-title">User Pages</span>
+        <i class="menu-arrow"></i>
+      </a>
+      <div class="collapse" id="auth">
+        <ul class="nav flex-column sub-menu">
+          {% if request.user.is_superuser %}
+          <li class="nav-item"> <a class="nav-link" href="{% url 'admin:password_change' %}"> Change Password </a></li>
+            <form action="{% url 'logout' %}" method="post">
+            {% csrf_token %}
+            <button type="submit" class="btn btn-light">Logout</button>
+          </form>
+          {% else %}
+            {% if request.user.is_authenticated %}
+            <li class="nav-item"> <a class="nav-link" href="{% url 'password_change' %}"> Change Password </a></li>
+            <li class="nav-item"> <a class="nav-link" href="{% url 'logout' %}"> Logout </a></li>
+            {% else %}
+            <li class="nav-item"> <a class="nav-link" href="{% url 'login' %}"> Login </a></li>
+            <li class="nav-item"> <a class="nav-link" href="{% url 'register' %}"> Register </a></li>
+            {% endif %}
+          {% endif %}
+        </ul>
+      </div>
+    </li>
+  </ul>
+</nav>

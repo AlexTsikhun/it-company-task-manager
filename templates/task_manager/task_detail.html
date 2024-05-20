@@ -1,0 +1,26 @@
+{% extends "base.html" %}
+{% block content %}
+  <h4 class="card-title">Task detail page</h4>
+  <p><strong>Name:</strong> {{ task.name }}</p>
+  <p><strong>Description:</strong> {{ task.description }}</p>
+  <p><strong>Deadline:</strong> {{ task.deadline }}</p>
+  <p><strong>Is Completed:</strong> {{ task.is_completed }}</p>
+  <p><strong>Priority:</strong> {{ task.priority }}</p>
+  <p><strong>Type:</strong> {{ task.task_type }}</p>
+
+  <div class="p-2">
+    <p><strong>Assignees:</strong></p>
+    {% for assignees in task.assignees.all %}
+      <hr>
+      <p><strong>Username:</strong> {{ assignees.username }}</p>
+      <p><strong>Id:</strong> {{assignees.id}}</p>
+    {% empty %}
+      <p>No assignees!</p>
+    {% endfor %}
+  </div>
+
+  <a href="{% url 'task_manager:task-update' pk=task.pk %}" class="btn btn-warning">Update</a>
+  <a href="{% url 'task_manager:task-delete' pk=task.pk %}" class="btn btn-danger">Delete</a>
+  <a href="{% url 'task_manager:task-list' %}" class="btn btn-secondary">Back</a>
+  <a style="float: right" href="{% url 'task_manager:task-complete' pk=task.pk %}" class="btn btn-primary">{{ task.is_completed|yesno:"Incomplete,Complete" }}</a>
+{% endblock %}

@@ -1,0 +1,248 @@
+{% extends 'base.html' %}
+{% load static %}
+
+
+{% block extrastyle %}
+
+  <!-- Plugin css for this page -->
+  <link rel="stylesheet" href="{% static 'vendors/datatables.net-bs4/dataTables.bootstrap4.css' %}">
+  <link rel="stylesheet" href="{% static 'js/select.dataTables.min.css' %}">
+
+{% endblock extrastyle %}
+
+{% block pro_banner %}
+
+  {% include 'includes/pro-banner.html' %}
+
+{% endblock pro_banner %}
+
+{% block content %}
+  <!-- partial -->
+      <div class="row">
+        <div class="col-sm-12">
+          <div class="home-tab">
+            <div class="tab-content tab-content-basic">
+              <div class="tab-pane fade show active" id="overview" role="tabpanel" aria-labelledby="overview">
+                <div class="row">
+                  <div class="col-sm-12">
+                    <div class="statistics-details d-flex align-items-center justify-content-between">
+                      <div>
+                        <p class="statistics-title">Bounce Rate</p>
+                        <h3 class="rate-percentage">32.53%</h3>
+                        <p class="text-danger d-flex"><i class="mdi mdi-menu-down"></i><span>-0.5%</span></p>
+                      </div>
+                      <div>
+                        <p class="statistics-title">Page Views</p>
+                        <h3 class="rate-percentage">7,682</h3>
+                        <p class="text-success d-flex"><i class="mdi mdi-menu-up"></i><span>+0.1%</span></p>
+                      </div>
+                      <div>
+                        <p class="statistics-title">New Sessions</p>
+                        <h3 class="rate-percentage">68.8</h3>
+                        <p class="text-danger d-flex"><i class="mdi mdi-menu-down"></i><span>68.8</span></p>
+                      </div>
+                      <div class="d-none d-md-block">
+                        <p class="statistics-title">Avg. Time on Site</p>
+                        <h3 class="rate-percentage">2m:35s</h3>
+                        <p class="text-success d-flex"><i class="mdi mdi-menu-down"></i><span>+0.8%</span></p>
+                      </div>
+                      <div class="d-none d-md-block">
+                        <p class="statistics-title">New Sessions</p>
+                        <h3 class="rate-percentage">68.8</h3>
+                        <p class="text-danger d-flex"><i class="mdi mdi-menu-down"></i><span>68.8</span></p>
+                      </div>
+                      <div class="d-none d-md-block">
+                        <p class="statistics-title">Avg. Time on Site</p>
+                        <h3 class="rate-percentage">2m:35s</h3>
+                        <p class="text-success d-flex"><i class="mdi mdi-menu-down"></i><span>+0.8%</span></p>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="col-lg-8 d-flex flex-column">
+                    <div class="row flex-grow">
+                      <div class="col-12 col-lg-4 col-lg-12 grid-margin stretch-card">
+                        <div class="card card-rounded">
+                          <div class="card-body">
+                            <div class="d-sm-flex justify-content-between align-items-start">
+                              <div>
+                               <h4 class="card-title card-title-dash">Performance Line Chart</h4>
+                               <h5 class="card-subtitle card-subtitle-dash">Lorem Ipsum is simply dummy text of the printing</h5>
+                              </div>
+                              <div id="performance-line-legend"></div>
+                            </div>
+                            <div class="chartjs-wrapper mt-5">
+                              <canvas id="performaneLine"></canvas>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="col-lg-4 d-flex flex-column">
+                    <div class="row flex-grow">
+                      <div class="col-md-6 col-lg-12 grid-margin stretch-card">
+                        <div class="card bg-primary card-rounded">
+                          <div class="card-body pb-0">
+                            <h4 class="card-title card-title-dash text-white mb-4">Status Summary</h4>
+                            <div class="row">
+                              <div class="col-sm-4">
+                                <p class="status-summary-ight-white mb-1">Closed Value</p>
+                                <h2 class="text-info">{{ closed_task_counter }}</h2>
+                              </div>
+                              <div class="col-sm-8">
+                                <div class="status-summary-chart-wrapper pb-4">
+                                  <canvas id="status-summary"></canvas>
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                      <div class="col-md-6 col-lg-12 grid-margin stretch-card">
+                        <div class="card card-rounded">
+                          <div class="card-body">
+                            <div class="row">
+                              <div class="col-sm-6">
+                                <div class="d-flex justify-content-between align-items-center mb-2 mb-sm-0">
+                                  <div class="circle-progress-width">
+                                    <div id="totalVisitors" class="progressbar-js-circle pr-2"></div>
+                                  </div>
+                                  <div>
+                                    <p class="text-small mb-2">Total Visitors</p>
+                                    <h4 class="mb-0 fw-bold">26.80%</h4>
+                                  </div>
+                                </div>
+                              </div>
+                              <div class="col-sm-6">
+                                <div class="d-flex justify-content-between align-items-center">
+                                  <div class="circle-progress-width">
+                                    <div id="visitperday" class="progressbar-js-circle pr-2"></div>
+                                  </div>
+                                  <div>
+                                    <p class="text-small mb-2">Your visits</p>
+                                    <h4 class="mb-0 fw-bold">{{ num_visits }}</h4>
+                                  </div>
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="col-lg-8 d-flex flex-column">
+
+                    <div class="row flex-grow">
+                      <div class="col-12 grid-margin stretch-card">
+                        <div class="card card-rounded table-darkBGImg">
+                          <div class="card-body">
+                            <div class="col-sm-8">
+                              <h3 class="text-white upgrade-info mb-0">
+                                Enhance your <span class="fw-bold">Campaign</span> for better outreach
+                              </h3>
+                              <a href="#" class="btn btn-info upgrade-btn">Upgrade Account!</a>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="col-lg-4 d-flex flex-column">
+                    <div class="row flex-grow">
+                      <div class="col-12 grid-margin stretch-card">
+                        <div class="card card-rounded">
+                          <div class="card-body">
+                            <div class="row">
+                              <div class="col-lg-12">
+                                <div class="d-flex justify-content-between align-items-center">
+                                  <h4 class="card-title card-title-dash">Todo list</h4>
+                                  <div class="add-items d-flex mb-0">
+                                    <!-- <input type="text" class="form-control todo-list-input" placeholder="What do you need to do today?"> -->
+                                    <a href="{% url 'task_manager:task-create' %}" class="add btn btn-icons btn-rounded btn-primary text-white me-0 pl-12p"><i class="mdi mdi-plus"></i></a>
+                                  </div>
+                                </div>
+                                <div class="list-wrapper">
+                                  <ul class="todo-list todo-list-rounded">
+                                    <li class="d-block">
+                                      <div class="form-check w-100">
+                                        <label class="form-check-label">
+                                          <input class="checkbox" type="checkbox"> Lorem Ipsum is simply dummy text of the printing <i class="input-helper rounded"></i>
+                                        </label>
+                                        <div class="d-flex mt-2">
+                                          <div class="ps-4 text-small me-3">24 June 2020</div>
+                                          <div class="badge badge-opacity-warning me-3">Due tomorrow</div>
+                                          <i class="mdi mdi-flag ms-2 flag-color"></i>
+                                        </div>
+                                      </div>
+                                    </li>
+                                    <li class="d-block">
+                                      <div class="form-check w-100">
+                                        <label class="form-check-label">
+                                          <input class="checkbox" type="checkbox"> {{ last_task }} <i class="input-helper rounded"></i>
+                                        </label>
+                                        <div class="d-flex mt-2">
+                                          <div class="ps-4 text-small me-3">23 June 2020</div>
+                                          <div class="badge badge-opacity-success me-3">Done</div>
+                                        </div>
+                                      </div>
+                                    </li>
+                                    <li>
+                                      <div class="form-check w-100">
+                                        <label class="form-check-label">
+                                          <input class="checkbox" type="checkbox"> Lorem Ipsum is simply dummy text of the printing <i class="input-helper rounded"></i>
+                                        </label>
+                                        <div class="d-flex mt-2">
+                                          <div class="ps-4 text-small me-3">24 June 2020</div>
+                                          <div class="badge badge-opacity-success me-3">Done</div>
+                                        </div>
+                                      </div>
+                                    </li>
+                                    <li class="border-bottom-0">
+                                      <div class="form-check w-100">
+                                        <label class="form-check-label">
+                                          <input class="checkbox" type="checkbox"> Lorem Ipsum is simply dummy text of the printing <i class="input-helper rounded"></i>
+                                        </label>
+                                        <div class="d-flex mt-2">
+                                          <div class="ps-4 text-small me-3">24 June 2020</div>
+                                          <div class="badge badge-opacity-danger me-3">Expired</div>
+                                        </div>
+                                      </div>
+                                    </li>
+                                  </ul>
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- content-wrapper ends -->
+  </div>
+  <!-- main-panel ends -->
+  {% endblock %}
+
+  {% block extra_js %}
+
+  <!-- Plugin js for this page -->
+  <script src="{% static 'vendors/chart.js/Chart.min.js' %}"></script>
+  <script src="{% static 'vendors/progressbar.js/progressbar.min.js' %}"></script>
+
+  <!-- Custom js for this page-->
+  <script src="{% static 'js/jquery.cookie.js' %}" type="text/javascript"></script>
+  <script src="{% static 'js/dashboard.js' %}"></script>
+  <script src="{% static 'js/Chart.roundedBarCharts.js' %}"></script>
+  <!-- End custom js for this page-->
+
+  {% endblock extra_js %}

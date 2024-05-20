@@ -1,0 +1,40 @@
+{% extends "base.html" %}
+{% block content %}
+  <h4 class="card-title">Worker table 
+    <a href="{% url 'task_manager:worker-create' %}" class="btn btn-primary btn-rounded btn-fw link-to-page">Create</a></h4>
+  <p class="card-description">
+    List of all workers
+  </p>
+  <div class="table-responsive">
+    {% if worker_list %}
+      <table class="table table-hover">
+        <thead>
+          <tr>
+            <th scope="col">#</th>
+            <th scope="col">First name</th>
+            <th scope="col">Last name</th>
+            <th scope="col">Username</th>
+            <th scope="col">Position</th>
+          </tr>
+        </thead>
+        <tbody>
+          {% for worker in worker_list %}
+          <tr>
+            <th scope="row"><a href="{% url 'task_manager:worker-detail' pk=worker.pk %}" class="btn btn-light btn-rounded btn-fw">{{ worker.pk }}</a></th>
+            <td>{{ worker.first_name }}</td>
+            <td>{{ worker.last_name }}</td>
+            <td>{{ worker.username }}</td>
+            <td>{{ worker.position }}</td>
+          </tr>
+          {% endfor %}
+        </tbody>
+      </table>
+      <br>
+      {% block pagination %}
+        {% include 'includes/pagination.html' %}
+      {% endblock %}
+    {% else %}
+    <p>There are no workers in the company.</p>
+  {% endif %}
+  </div>
+{% endblock %}
