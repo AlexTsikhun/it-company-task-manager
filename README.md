@@ -60,4 +60,5 @@ toDo
 - json file with data 
 - add tests
 - in profile tab, if haven't email or name info - write it
+- if in index todo not tasks - show it
 
