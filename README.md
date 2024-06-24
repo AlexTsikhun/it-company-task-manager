@@ -1,4 +1,4 @@
-# IT Company Task Manager
+# IT Company Task Manager (https://it-company-task-manager-pt9n.onrender.com/)
 I have a team of Developers, Designers, Project Managers, and QA specialists. 
 Also, I have a lot of tasks connected with the IT-sphere. 
 But somehow, I still haven't heard anything about Trello or ClickUp. 
@@ -27,6 +27,11 @@ python3 manage.py migate
 python3 manage.py runserver
 
 ```
+
+Credentials:
+
+Username: `test`
+Password: ```rA$`3?590#<>```
 
 #### DB Structure:
 ![img.png](images/img.png)

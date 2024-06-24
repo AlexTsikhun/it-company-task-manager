@@ -51,6 +51,8 @@ class RegistrationForm(UserCreationForm):
         fields = (
             "username",
             "email",
+            "first_name",
+            "last_name",
         )
 
         widgets = {
@@ -64,6 +66,18 @@ class RegistrationForm(UserCreationForm):
                 attrs={
                     "class": "form-control form-control-lg",
                     "placeholder": "Email"
+                }
+            ),
+            "first_name": forms.TextInput(
+                attrs={
+                    "class": "form-control form-control-lg",
+                    "placeholder": "First name"
+                }
+            ),
+            "last_name": forms.TextInput(
+                attrs={
+                    "class": "form-control form-control-lg",
+                    "placeholder": "Last name"
                 }
             ),
         }
