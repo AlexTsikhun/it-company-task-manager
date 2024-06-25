@@ -7,16 +7,15 @@ So, I decided to implement my own Task Manager, which will handle all
     Everyone from the team can create tasks, assign these tasks to team members,
     and mark the tasks as done (of course, better before the deadlines).
 
+## Table of Contents
 
-## Technologies Used
+- [Installation](#installation)
+- [Technologies Used](#technologies-used)
+- [DB Structure](#db-structure)
+- [Page examples](#page-examples)
 
-- Django
-- Sqlite3
-- HTML (Jinja)/CSS/Javascript
-- Bootstrap
-- django-admin-star library
+## Installation
 
-### Installation
 ```shell
 git clone https://github.com/AlexTsikhun/it-company-task-manager
 cd it-company-task-manager
@@ -33,11 +32,19 @@ Credentials:
 Username: `test`
 Password: ```rA$`3?590#<>```
 
-#### DB Structure:
+## Technologies Used
+
+- Django
+- Sqlite3
+- HTML (Jinja)/CSS/Javascript
+- Bootstrap
+- django-admin-star library
+
+## DB Structure:
 ![img.png](images/img.png)
 
 
-#### Page example
+## Page examples
 ![img.png](images/index.png)
 ![workers.png](images/workers.png)
 ![detail_worker.png](images%2Fdetail_worker.png)
