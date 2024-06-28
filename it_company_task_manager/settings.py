@@ -92,7 +92,7 @@ DATABASES = {
     }
 }
 
-# this config checks if url exists in this env
+# this config checks if DATABASE_URL exists in this env
 db_from_env = dj_database_url.config(conn_max_age=500)
 # if exists - update
 DATABASES["default"].update(db_from_env)
