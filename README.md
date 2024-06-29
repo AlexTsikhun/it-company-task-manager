@@ -46,9 +46,9 @@ Password: ```rA$`3?590#<>```
 ## Page examples
 ![img.png](images/index.png)
 ![workers.png](images/workers.png)
-![detail_worker.png](images%2Fdetail_worker.png)
-![tasks.png](images%2Ftasks.png)
-![create_task.png](images%2Fcreate_task.png)
+![detail_worker.png](images/detail_worker.png)
+![tasks.png](images/tasks.png)
+![create_task.png](images/create_task.png)
 
 <details>
 <summary>Ideas to add:</summary>
@@ -76,6 +76,8 @@ Password: ```rA$`3?590#<>```
 - add tests
 - in profile tab, if haven't email or name info - write it
 - if in index todo not tasks - show it
+- when create - show also position, not only username
+- when register add position
 
 </details>
 
