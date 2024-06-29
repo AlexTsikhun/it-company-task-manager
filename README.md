@@ -78,6 +78,8 @@ Password: ```rA$`3?590#<>```
 - if in index todo not tasks - show it
 - when create - show also position, not only username
 - when register add position
+- if I will have a lot of Assignees? should be displayed beautifully
+- in index page add request
 
 </details>
 
