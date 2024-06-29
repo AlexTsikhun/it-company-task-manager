@@ -50,8 +50,8 @@ Password: ```rA$`3?590#<>```
 ![tasks.png](images/tasks.png)
 ![create_task.png](images/create_task.png)
 
-<details>
-<summary>Ideas to add:</summary>
+<details style="border: 1px solid #ccc; padding: 10px; margin-bottom: 10px">
+<summary style="font-size: 1.17em; font-weight: bold;">Ideas to add:</summary>
 
 - For each worker it is shown separately: completed and not completed tasks.
 - Add Tags (like landing-page-layout or python-refactoring) for tasks with Many-to-Many relationship.
@@ -61,8 +61,8 @@ Password: ```rA$`3?590#<>```
 - 
 </details>
 
-<details>
-<summary>toDo</summary>
+<details style="border: 1px solid #ccc; padding: 10px; margin-bottom: 10px">
+<summary style="font-size: 1.17em; font-weight: bold; ">toDo</summary>
 
 - add which worker should do this task/ or has this position
 - my task
@@ -83,16 +83,3 @@ Password: ```rA$`3?590#<>```
 
 </details>
 
-<style>
-details {
-    border: 1px solid #ccc;
-    padding: 10px;
-    margin-bottom: 10px;
-}
-
-summary {
-    cursor: pointer;
-    font-size: 1.17em; /* Equivalent to h3 size (typically 24px assuming 16px base font size) */
-    font-weight: bold;
-}
-</style>
