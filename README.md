@@ -1,6 +1,8 @@
 # IT Company Task Manager (https://it-company-task-manager-pt9n.onrender.com/)
 
-So, I decided to implement my own Task Manager, which will handle all 
+(the first page loading is a bit long, be patient)
+
+I decided to implement my own Task Manager, which will handle all 
     possible problems during product development in my team. 
     Everyone from the team can create tasks, assign these tasks to team members,
     and mark the tasks as done.
@@ -49,6 +51,8 @@ Password: ```rA$`3?590#<>```
 ![detail_worker.png](images/detail_worker.png)
 ![tasks.png](images/tasks.png)
 ![create_task.png](images/create_task.png)
+![task_types.png](images/task_types.png)
+![positions.png](images/positions.png)
 
 <details style="border: 1px solid #ccc; padding: 10px; margin-bottom: 10px">
 <summary style="font-size: 1.17em; font-weight: bold;">Ideas to add:</summary>
@@ -59,6 +63,7 @@ Password: ```rA$`3?590#<>```
 - total visitors counter
 - add search (for all sections??)
 - 
+- chat with web-sockets
 </details>
 
 <details style="border: 1px solid #ccc; padding: 10px; margin-bottom: 10px">
