@@ -9,9 +9,7 @@ class ModelTest(TestCase):
         password = "password123"
         position = Position.objects.create(name="position")
         self.worker = Worker.objects.create_user(
-            username=username,
-            password=password,
-            position=position
+            username=username, password=password, position=position
         )
 
     def test_task_creation(self):
@@ -26,7 +24,4 @@ class ModelTest(TestCase):
             task_type=task_type,
         )
         task.assignees.set([self.worker])
-        self.assertEqual(
-            str(task),
-            task.name
-        )
+        self.assertEqual(str(task), task.name)

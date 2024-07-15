@@ -23,8 +23,7 @@ class PublicWorkerTest(TestCase):
 class PrivateManufacturerTest(TestCase):
     def setUp(self):
         self.user = get_user_model().objects.create_user(
-            username="test3",
-            password="password3"
+            username="test3", password="password3"
         )
         self.client.force_login(self.user)
 
@@ -32,21 +31,21 @@ class PrivateManufacturerTest(TestCase):
             {
                 "username": "username1",
                 "password": "password123",
-                "position": Position.objects.create(name="position1")
+                "position": Position.objects.create(name="position1"),
             },
             {
                 "username": "username2",
                 "password": "password123",
-                "position": Position.objects.create(name="position2")
+                "position": Position.objects.create(name="position2"),
             },
         ]
         Worker.objects.bulk_create(
             Worker(
                 username=user["username"],
                 password=user["password"],
-                position=user["position"]
-            ) for user in user_dict
-
+                position=user["position"],
+            )
+            for user in user_dict
         )
         self.resp = self.client.get(WORKER_URL)
 
@@ -54,22 +53,16 @@ class PrivateManufacturerTest(TestCase):
         self.assertEqual(self.resp.status_code, 200)
 
         manufacturers = Worker.objects.all()
-        self.assertEqual(
-            list(self.resp.context["object_list"]),
-            list(manufacturers)
-        )
+        self.assertEqual(list(self.resp.context["object_list"]), list(manufacturers))
 
     def test_check_template_workers(self):
-        self.assertTemplateUsed(
-            self.resp, "task_manager/worker_list.html"
-        )
+        self.assertTemplateUsed(self.resp, "task_manager/worker_list.html")
 
 
 class PrivateTaskTest(TestCase):
     def setUp(self):
         self.user = get_user_model().objects.create_user(
-            username="test5",
-            password="password3"
+            username="test5", password="password3"
         )
         self.client.force_login(self.user)
 
@@ -79,13 +72,15 @@ class PrivateTaskTest(TestCase):
             task_type_name = f"task type{i}"
             task_type_obj = TaskType.objects.create(name=task_type_name)
 
-            user_dict.append({
-                "name": f"name{i}",
-                "description": f"description{i}",
-                "is_completed": False,
-                "priority": "low" if i % 2 else "medium",
-                "task_type": task_type_obj,
-            })
+            user_dict.append(
+                {
+                    "name": f"name{i}",
+                    "description": f"description{i}",
+                    "is_completed": False,
+                    "priority": "low" if i % 2 else "medium",
+                    "task_type": task_type_obj,
+                }
+            )
 
         tasks = Task.objects.bulk_create(
             Task(
@@ -93,38 +88,40 @@ class PrivateTaskTest(TestCase):
                 description=user["description"],
                 is_completed=user["is_completed"],
                 priority=user["priority"],
-                task_type=user["task_type"]
-            ) for user in user_dict
+                task_type=user["task_type"],
+            )
+            for user in user_dict
         )
 
         position = Position.objects.create(name="position")
-        [task.assignees.set([Worker.objects.create(
-            username=f"username{i}",
-            password=f"password{i}",
-            position=position
-        )]) for i, task in enumerate(tasks)]
+        [
+            task.assignees.set(
+                [
+                    Worker.objects.create(
+                        username=f"username{i}",
+                        password=f"password{i}",
+                        position=position,
+                    )
+                ]
+            )
+            for i, task in enumerate(tasks)
+        ]
         self.resp = self.client.get(TASK_URL)
 
     def test_retrieve_tasks(self):
         self.assertEqual(self.resp.status_code, 200)
 
         tasks = Task.objects.all()
-        self.assertEqual(
-            list(self.resp.context["object_list"]),
-            list(tasks)
-        )
+        self.assertEqual(list(self.resp.context["object_list"]), list(tasks))
 
     def test_check_template_tasks(self):
-        self.assertTemplateUsed(
-            self.resp, "task_manager/task_list.html"
-        )
+        self.assertTemplateUsed(self.resp, "task_manager/task_list.html")
 
 
 class PrivateTaskTypeTest(TestCase):
     def setUp(self):
         self.user = get_user_model().objects.create_user(
-            username="test5",
-            password="password3"
+            username="test5", password="password3"
         )
         self.client.force_login(self.user)
 
@@ -135,15 +132,10 @@ class PrivateTaskTypeTest(TestCase):
         self.assertEqual(self.resp.status_code, 200)
 
         tasks_type = TaskType.objects.all()
-        self.assertEqual(
-            list(self.resp.context["object_list"]),
-            list(tasks_type)
-        )
+        self.assertEqual(list(self.resp.context["object_list"]), list(tasks_type))
 
     def test_check_template_tasks(self):
-        self.assertTemplateUsed(
-            self.resp, "task_manager/tasktype_list.html"
-        )
+        self.assertTemplateUsed(self.resp, "task_manager/tasktype_list.html")
 
     def test_tasktype_url_accessible_by_name(self):
         response = self.client.get(TASKTYPE_URL)
@@ -153,8 +145,7 @@ class PrivateTaskTypeTest(TestCase):
 class PrivatePositionTest(TestCase):
     def setUp(self):
         self.user = get_user_model().objects.create_user(
-            username="test5",
-            password="password3"
+            username="test5", password="password3"
         )
         self.client.force_login(self.user)
 
@@ -165,19 +156,14 @@ class PrivatePositionTest(TestCase):
         self.assertEqual(self.resp.status_code, 200)
 
         position = Position.objects.all()
-        self.assertEqual(
-            list(self.resp.context["object_list"]),
-            list(position)
-        )
+        self.assertEqual(list(self.resp.context["object_list"]), list(position))
 
     def test_check_template_tasks(self):
-        self.assertTemplateUsed(
-            self.resp, "task_manager/position_list.html"
-        )
+        self.assertTemplateUsed(self.resp, "task_manager/position_list.html")
 
     def test_position_url_exists_at_desired_location(self):
         # checks specific path, without domain
-        response = self.client.get('/positions/')
+        response = self.client.get("/positions/")
         self.assertEqual(response.status_code, 200)
 
     def test_position_url_accessible_by_name(self):
@@ -189,8 +175,7 @@ class PrivatePositionTest(TestCase):
 class SearchTaskTest(TestCase):
     def setUp(self):
         self.user = get_user_model().objects.create_user(
-            username="test5",
-            password="password3"
+            username="test5", password="password3"
         )
         self.client.force_login(self.user)
 
@@ -200,13 +185,15 @@ class SearchTaskTest(TestCase):
             task_type_name = f"task type{i}"
             task_type_obj = TaskType.objects.create(name=task_type_name)
 
-            user_dict.append({
-                "name": f"name{i}",
-                "description": f"description{i}",
-                "is_completed": False,
-                "priority": "low" if i % 2 else "medium",
-                "task_type": task_type_obj,
-            })
+            user_dict.append(
+                {
+                    "name": f"name{i}",
+                    "description": f"description{i}",
+                    "is_completed": False,
+                    "priority": "low" if i % 2 else "medium",
+                    "task_type": task_type_obj,
+                }
+            )
 
         tasks = Task.objects.bulk_create(
             Task(
@@ -214,16 +201,24 @@ class SearchTaskTest(TestCase):
                 description=user["description"],
                 is_completed=user["is_completed"],
                 priority=user["priority"],
-                task_type=user["task_type"]
-            ) for user in user_dict
+                task_type=user["task_type"],
+            )
+            for user in user_dict
         )
 
         position = Position.objects.create(name="position")
-        [task.assignees.set([Worker.objects.create(
-            username=f"username{i}",
-            password=f"password{i}",
-            position=position
-        )]) for i, task in enumerate(tasks)]
+        [
+            task.assignees.set(
+                [
+                    Worker.objects.create(
+                        username=f"username{i}",
+                        password=f"password{i}",
+                        position=position,
+                    )
+                ]
+            )
+            for i, task in enumerate(tasks)
+        ]
 
         self.factory = RequestFactory()
 
@@ -272,7 +267,5 @@ class SearchTaskTest(TestCase):
         queryset = response.context_data["object_list"]
         self.assertEqual(queryset.count(), 2)
         self.assertQuerysetEqual(
-            queryset,
-            Task.objects.filter(name__icontains=test_data),
-            ordered=False
+            queryset, Task.objects.filter(name__icontains=test_data), ordered=False
         )

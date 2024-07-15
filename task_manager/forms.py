@@ -30,10 +30,7 @@ class RegistrationForm(UserCreationForm):
     password1 = forms.CharField(
         label="Password",
         widget=forms.PasswordInput(
-            attrs={
-                "class": "form-control form-control-lg",
-                "placeholder": "Password"
-            }
+            attrs={"class": "form-control form-control-lg", "placeholder": "Password"}
         ),
     )
     password2 = forms.CharField(
@@ -63,21 +60,18 @@ class RegistrationForm(UserCreationForm):
                 }
             ),
             "email": forms.EmailInput(
-                attrs={
-                    "class": "form-control form-control-lg",
-                    "placeholder": "Email"
-                }
+                attrs={"class": "form-control form-control-lg", "placeholder": "Email"}
             ),
             "first_name": forms.TextInput(
                 attrs={
                     "class": "form-control form-control-lg",
-                    "placeholder": "First name"
+                    "placeholder": "First name",
                 }
             ),
             "last_name": forms.TextInput(
                 attrs={
                     "class": "form-control form-control-lg",
-                    "placeholder": "Last name"
+                    "placeholder": "Last name",
                 }
             ),
         }
@@ -88,11 +82,7 @@ class TaskSearchForm(forms.Form):
         max_length=255,
         required=False,
         label="",
-        widget=forms.TextInput(
-            attrs={
-                "placeholder": "Search by task name"
-            }
-        )
+        widget=forms.TextInput(attrs={"placeholder": "Search by task name"}),
     )
 
 
@@ -101,9 +91,5 @@ class WorkerSearchForm(forms.Form):
         max_length=255,
         required=False,
         label="",
-        widget=forms.TextInput(
-            attrs={
-                "placeholder": "Search by username"
-            }
-        )
+        widget=forms.TextInput(attrs={"placeholder": "Search by username"}),
     )
