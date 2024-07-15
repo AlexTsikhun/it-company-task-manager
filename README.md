@@ -1,22 +1,21 @@
 # IT Company Task Manager (https://it-company-task-manager-pt9n.onrender.com/)
-I have a team of Developers, Designers, Project Managers, and QA specialists. 
-Also, I have a lot of tasks connected with the IT-sphere. 
-But somehow, I still haven't heard anything about Trello or ClickUp. 
-So, I decided to implement my own Task Manager, which will handle all 
+
+(the first page loading is a bit long, be patient)
+
+I decided to implement my own Task Manager, which will handle all 
     possible problems during product development in my team. 
     Everyone from the team can create tasks, assign these tasks to team members,
-    and mark the tasks as done (of course, better before the deadlines).
+    and mark the tasks as done.
 
+## Table of Contents
 
-## Technologies Used
+- [Installation](#installation)
+- [Technologies Used](#technologies-used)
+- [DB Structure](#db-structure)
+- [Page examples](#page-examples)
 
-- Django
-- Sqlite3
-- HTML (Jinja)/CSS/Javascript
-- Bootstrap
-- django-admin-star library
+## Installation
 
-### Installation
 ```shell
 git clone https://github.com/AlexTsikhun/it-company-task-manager
 cd it-company-task-manager
@@ -33,27 +32,43 @@ Credentials:
 Username: `test`
 Password: ```rA$`3?590#<>```
 
-#### DB Structure:
+## Technologies Used
+
+- Django
+- Sqlite3
+- HTML (Jinja)/CSS/Javascript
+- Bootstrap
+- django-admin-star library
+- dj-database-url
+
+## DB Structure:
 ![img.png](images/img.png)
 
 
-#### Page example
+## Page examples
 ![img.png](images/index.png)
 ![workers.png](images/workers.png)
-![detail_worker.png](images%2Fdetail_worker.png)
-![tasks.png](images%2Ftasks.png)
-![create_task.png](images%2Fcreate_task.png)
+![detail_worker.png](images/detail_worker.png)
+![tasks.png](images/tasks.png)
+![create_task.png](images/create_task.png)
+![task_types.png](images/task_types.png)
+![positions.png](images/positions.png)
 
-### Ideas to add:
+<details style="border: 1px solid #ccc; padding: 10px; margin-bottom: 10px">
+<summary style="font-size: 1.17em; font-weight: bold;">Ideas to add:</summary>
 
 - For each worker it is shown separately: completed and not completed tasks.
 - Add Tags (like landing-page-layout or python-refactoring) for tasks with Many-to-Many relationship.
 - Add support for Projects and Teams, different teams can work on different projects, and also inside projects there are a lot of tasks to do (complicated).
 - total visitors counter
 - add search (for all sections??)
+- 
+- chat with web-sockets
+</details>
 
+<details style="border: 1px solid #ccc; padding: 10px; margin-bottom: 10px">
+<summary style="font-size: 1.17em; font-weight: bold; ">toDo</summary>
 
-toDo
 - add which worker should do this task/ or has this position
 - my task
 - future work - add alternative solution (client side with JS) for completed/uncompleted tasks
@@ -66,4 +81,10 @@ toDo
 - add tests
 - in profile tab, if haven't email or name info - write it
 - if in index todo not tasks - show it
+- when create - show also position, not only username
+- when register add position
+- if I will have a lot of Assignees? should be displayed beautifully
+- in index page add request
+
+</details>
 

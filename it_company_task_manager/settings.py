@@ -32,8 +32,13 @@ SECRET_KEY = os.environ["DJANGO_SECRET_KEY"]
 # DEBUG = True
 DEBUG = os.environ.get("DJANGO_DEBUG", "") != "False"
 
-ALLOWED_HOSTS = ["127.0.0.1", "it-company-task-manager-pt9n.onrender.com"]
+ALLOWED_HOSTS = ["127.0.0.1", "localhost", "it-company-task-manager-pt9n.onrender.com"]
 
+INTERNAL_IPS = [
+    # ...
+    "127.0.0.1",
+    # ...
+]
 
 # Application definition
 
@@ -48,6 +53,7 @@ INSTALLED_APPS = [
     "task_manager.apps.TaskManagerConfig",
     "crispy_forms",
     "crispy_bootstrap4",
+    "debug_toolbar",
 ]
 
 MIDDLEWARE = [
@@ -59,6 +65,7 @@ MIDDLEWARE = [
     "django.contrib.auth.middleware.AuthenticationMiddleware",
     "django.contrib.messages.middleware.MessageMiddleware",
     "django.middleware.clickjacking.XFrameOptionsMiddleware",
+    "debug_toolbar.middleware.DebugToolbarMiddleware",
 ]
 
 ROOT_URLCONF = "it_company_task_manager.urls"
@@ -92,7 +99,7 @@ DATABASES = {
     }
 }
 
-# this config checks if url exists in this env
+# this config checks if DATABASE_URL exists in this env
 db_from_env = dj_database_url.config(conn_max_age=500)
 # if exists - update
 DATABASES["default"].update(db_from_env)
