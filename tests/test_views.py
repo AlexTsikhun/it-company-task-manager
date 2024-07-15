@@ -23,7 +23,9 @@ class PublicWorkerTest(TestCase):
 class PrivateManufacturerTest(TestCase):
     def setUp(self):
         self.user = get_user_model().objects.create_user(
-            username="test3", password="password3"
+            username="test3",
+            password="password3",
+            position=Position.objects.create(name="boss"),
         )
         self.client.force_login(self.user)
 
