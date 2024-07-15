@@ -9,7 +9,8 @@ from task_manager.forms import (
     WorkerCreationForm,
     TaskForm,
     RegistrationForm,
-    TaskSearchForm, WorkerSearchForm
+    TaskSearchForm,
+    WorkerSearchForm,
 )
 from task_manager.models import Worker, Task, TaskType, Position
 
@@ -30,9 +31,7 @@ def index(request):
         "ind": res,
         "num_visits": num_visits + 1,
         "closed_task_counter": closed_task_counter,
-        "search_form": TaskSearchForm(
-            initial={"name": name}
-        ),
+        "search_form": TaskSearchForm(initial={"name": name}),
         "last_task": last_task,
     }
 
@@ -41,13 +40,11 @@ def index(request):
         task_list = queryset.filter(name__icontains=name)
 
         context["task_list"] = task_list
-        return render(request,
-                      template_name="task_manager/task_list.html",
-                      context=context)
+        return render(
+            request, template_name="task_manager/task_list.html", context=context
+        )
 
-    return render(request,
-                  template_name="task_manager/index.html",
-                  context=context)
+    return render(request, template_name="task_manager/index.html", context=context)
 
 
 class WorkerListView(LoginRequiredMixin, generic.ListView):
@@ -58,14 +55,12 @@ class WorkerListView(LoginRequiredMixin, generic.ListView):
     def get_context_data(self, *, object_list=None, **kwargs):
         context = super(WorkerListView, self).get_context_data(**kwargs)
         username = self.request.GET.get("username", "")
-        context["search_form_worker"] = WorkerSearchForm(
-            initial={"username": username}
-        )
+        context["search_form_worker"] = WorkerSearchForm(initial={"username": username})
         return context
 
     # update data in the page after searching
     def get_queryset(self):
-        queryset = Worker.objects.all()
+        queryset = Worker.objects.select_related("position")
         username = self.request.GET.get("username")
         if username:
             return queryset.filter(username__icontains=username)
@@ -80,7 +75,7 @@ class WorkerCreateView(LoginRequiredMixin, generic.CreateView):
 
 class WorkerDetailView(LoginRequiredMixin, generic.DetailView):
     model = Worker
-    queryset = Worker.objects.all()
+    queryset = Worker.objects.select_related("position")
 
 
 class WorkerUpdateView(LoginRequiredMixin, generic.UpdateView):
@@ -94,34 +89,34 @@ class WorkerUpdateView(LoginRequiredMixin, generic.UpdateView):
         "position",
     )
     success_url = reverse_lazy("task_manager:worker-list")
+    queryset = Worker.objects.select_related("position")  # not help
 
 
 class WorkerDeleteView(LoginRequiredMixin, generic.DeleteView):
     model = Worker
     success_url = reverse_lazy("task_manager:worker-list")
+    queryset = Worker.objects.select_related("position")
 
 
 class TaskListView(LoginRequiredMixin, generic.ListView):
     model = Task
     paginate_by = 10
 
-    # add search form to the page
     def get_context_data(self, *, object_list=None, **kwargs):
+        """Add search form to the page"""
         context = super(TaskListView, self).get_context_data(**kwargs)
         name = self.request.GET.get("name", "")
-        context["search_form"] = TaskSearchForm(
-            initial={"name": name}
-        )
+        context["search_form"] = TaskSearchForm(initial={"name": name})
         return context
 
-    # update data in the page after searching
     def get_queryset(self):
+        """update data in the page after searching"""
         queryset = Task.objects.all()
         name = self.request.GET.get("name")
         if name:
             return queryset.filter(name__icontains=name)
         return queryset
-    
+
 
 class TaskCreateView(LoginRequiredMixin, generic.CreateView):
     model = Task
@@ -131,7 +126,7 @@ class TaskCreateView(LoginRequiredMixin, generic.CreateView):
 
 class TaskDetailView(LoginRequiredMixin, generic.DetailView):
     model = Task
-    queryset = Task.objects.all()
+    queryset = Task.objects.select_related("task_type").prefetch_related("assignees")
 
 
 class TaskUpdateView(LoginRequiredMixin, generic.UpdateView):
@@ -208,9 +203,7 @@ class TaskCompletedView(LoginRequiredMixin, generic.ListView):
     def get_context_data(self, *, object_list=None, **kwargs):
         context = super(TaskCompletedView, self).get_context_data(**kwargs)
         name = self.request.GET.get("name", "")
-        context["search_form"] = TaskSearchForm(
-            initial={"name": name}
-        )
+        context["search_form"] = TaskSearchForm(initial={"name": name})
         return context
 
     # update data in the page after searching
@@ -228,12 +221,8 @@ def task_completed(request):
 
     query_name = request.GET.get("name", "")
     if query_name:
-        filtered_completed_tasks = completed_tasks.filter(
-            name__icontains=query_name
-        )
-        context = {
-            "filtered_completed_tasks": filtered_completed_tasks
-        }
+        filtered_completed_tasks = completed_tasks.filter(name__icontains=query_name)
+        context = {"filtered_completed_tasks": filtered_completed_tasks}
         return render(request, "task_manager/task_completed.html", context)
 
     context = {
