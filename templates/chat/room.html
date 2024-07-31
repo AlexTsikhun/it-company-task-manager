@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>{{ room.name }}</title>
+</head>
+<body>
+    <h1>Chat Room: {{ room.name }}</h1>
+
+    <div id="messages">
+        {% for message in messages %}
+            <p>{{ message.sender.username }}: {{ message.content }}</p>
+        {% endfor %}
+    </div>
+
+    <form action="{% url 'send_message' room_name=room.name %}" method="post">
+        {% csrf_token %}
+        <input type="text" name="message">
+        <button type="submit">Send</button>
+    </form>
+</body>
+</html>
