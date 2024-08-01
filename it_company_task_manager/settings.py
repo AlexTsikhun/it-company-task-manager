@@ -98,6 +98,11 @@ DATABASES = {
     "default": {
         "ENGINE": "django.db.backends.sqlite3",
         "NAME": BASE_DIR / "db.sqlite3",
+        # fix ChannelLiveServerTestCase can't be used with in memory databases
+        # (sqlite in memory for test)
+        "TEST": {
+            "NAME": BASE_DIR / "db.sqlite3",
+        },
     }
 }
 
