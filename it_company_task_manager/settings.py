@@ -165,3 +165,12 @@ CRISPY_TEMPLATE_PACK = "bootstrap4"
 
 # Daphne
 ASGI_APPLICATION = "it_company_task_manager.asgi.application"
+
+CHANNEL_LAYERS = {
+    "default": {
+        "BACKEND": "channels_redis.core.RedisChannelLayer",
+        "CONFIG": {
+            "hosts": [("127.0.0.1", 6379)],
+        },
+    },
+}
