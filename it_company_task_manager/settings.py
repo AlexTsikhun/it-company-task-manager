@@ -43,6 +43,7 @@ INTERNAL_IPS = [
 # Application definition
 
 INSTALLED_APPS = [
+    "daphne",
     "admin_star.apps.AdminStarConfig",
     "django.contrib.admin",
     "django.contrib.auth",
@@ -161,3 +162,6 @@ LOGOUT_REDIRECT_URL = "/"
 CRISPY_ALLOWED_TEMPLATE_PACKS = "bootstrap4"
 
 CRISPY_TEMPLATE_PACK = "bootstrap4"
+
+# Daphne
+ASGI_APPLICATION = "it_company_task_manager.asgi.application"
