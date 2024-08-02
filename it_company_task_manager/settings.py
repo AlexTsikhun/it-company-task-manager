@@ -44,7 +44,7 @@ INTERNAL_IPS = [
 
 INSTALLED_APPS = [
     "daphne",
-    "admin_star.apps.AdminStarConfig",
+    "admin_star",
     "django.contrib.admin",
     "django.contrib.auth",
     "django.contrib.contenttypes",
@@ -173,9 +173,10 @@ ASGI_APPLICATION = "it_company_task_manager.asgi.application"
 
 CHANNEL_LAYERS = {
     "default": {
+        # "BACKEND": "channels.layers.InMemoryChannelLayer",
         "BACKEND": "channels_redis.core.RedisChannelLayer",
-        "CONFIG": {
-            "hosts": [("127.0.0.1", 6379)],
-        },
+        # "CONFIG": {
+        #     "hosts": [("127.0.0.1", 6379)],
+        # },
     },
 }
