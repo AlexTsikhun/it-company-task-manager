@@ -59,30 +59,25 @@ function newMessage(message, sent_by_id, thread_id) {
 	let chat_id = 'chat_' + thread_id
 	if(sent_by_id == USER_ID){
 	    message_element = `
-        <li class="clearfix">
-          <div class="message-data text-right">
-            <span
-<!--                class="message-data-time">{{ chat.timestamp|date:"d D" }}, {{ chat.timestamp|time:"H:i" }}</span>-->
-          </div>
-          <div class="message other-message float-right">
-            ${message}
-          </div>
-        </li>
+        <ul class="m-b-0">
+          <li class="clearfix">
+            <div class="message other-message float-right">
+              ${message}
+            </div>
+          </li>
+        </ul>
 	    `
     }
 	else{
 	    message_element = `
-        <li class="clearfix">
-          <div class="message-data">
-              <span
-<!--                  class="message-data-time">{{ chat.timestamp|date:"d D" }}, {{ chat.timestamp|time:"H:i" }}</span>-->
-          </div>
-          <div class="message my-message">
-            ${message}
-          </div>
-        </li>
+        <ul class="m-b-0">
+          <li class="clearfix">
+            <div class="message my-message">
+              ${message}
+            </div>
+          </li>
+        </ul>
         `
-
     }
 
     let message_body = $('.messages-wrapper[chat-id="' + chat_id + '"] .chat-history')
